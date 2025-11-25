@@ -1,0 +1,78 @@
+This is an excellent next step. For a company like **Absolute Offroad** selling high-value, safety-critical 4x4 accessories, the homepage needs to be a **conversion machine** and an **authority-building tool** first, not just a catalog.
+
+Since you are a Next.js developer, I will provide a **strategic boilerplate/wireframe** detailing the structure and components you should prioritize to execute the "Hybrid E-commerce" and "Vehicle Selector" strategies recommended in the market analysis.
+
+---
+
+## 🚀 Absolute Offroad: Next.js Homepage Wireframe
+
+[cite_start]The design is engineered around the central strategic finding: a seamless **Vehicle Selector** is the **non-negotiable feature** that will give you digital superiority over key competitors like 4x4 Mega World[cite: 1131, 1165, 1239, 1240].
+
+### 1. Header & Primary Navigation (The Foundation)
+
+[cite_start]The header must implement the **Dual Navigation Structure**[cite: 1293, 1294, 1599, 1959].
+
+| Element | Component Name | Strategic Purpose |
+| :--- | :--- | :--- |
+| **Logo** | `AbsoluteOffroadLogo` | High-quality logo and brand name. |
+| **Primary Nav** | `DualNavigation` | **The Key SEO Silo Split.** Must feature: **1. [cite_start]Shop by Vehicle** [cite: 1296] and **2. [cite_start]Shop by Part/Category**[cite: 1297, 1960]. |
+| **Utility Nav** | `UtilityNav` | Links for **My Account**, **Cart**, **Wishlist**, and **Search**. |
+| **Search Bar** | `GlobalSearch` | Large, prominently visible search. |
+
+### 2. The Core Function: Vehicle Selector (The Digital Checkmate)
+
+[cite_start]This is the **most critical component** for success and must be visually dominant[cite: 234, 242, 1131, 1239].
+
+| Element | Component Name | Strategic Purpose |
+| :--- | :--- | :--- |
+| **Vehicle Selector** | `VehicleSelectorComponent` | **Best-in-Class Feature.** Must be a persistent element (e.g., sticky header or top of the viewport). Allows users to select **Make, Model, and Year**. |
+| **CTA** | `SelectorCTA` | Button that says: **"Search for Parts"**. [cite_start]On click, it saves the vehicle to the session and redirects the user to the dynamically generated **Model Landing Page** (e.g., `/by-vehicle/toyota-hilux-2021/`)[cite: 236, 1311]. |
+
+### 3. Hero Section (The Hybrid Model Funnel)
+
+[cite_start]This section must immediately position Absolute Offroad as a **solutions provider**, not just a "box-shifter," leveraging the unique "Hybrid E-commerce" model[cite: 1258, 1262, 1263].
+
+| Element | Component Name | Strategic Purpose |
+| :--- | :--- | :--- |
+| **Headline** | `HeroHeadline` | **"Find Your Part. Book Your Fitment. Complete Your Build."** |
+| **Sub-Text** | `HeroSubText` | [cite_start]"Shop South Africa’s largest curated portfolio of premium 4x4 accessories with guaranteed installation by our Approved National Partner Network. **No more searching for a fitter.**" [cite: 1259, 1555] |
+| **Secondary CTA** | `FitmentNetworkCTA` | [cite_start]Button: **"Explore Fitment Partners"**[cite: 1266, 1553]. [cite_start]Links to the critical local SEO silo (e.g., `/fitment-partners/`)[cite: 1267, 1268]. |
+
+### 4. Trust & Authority Section (Building Credibility)
+
+[cite_start]This component builds immediate trust by highlighting the brand's key strengths and solving the customer's two biggest anxieties: **warranty** and **installation**[cite: 1524, 1535].
+
+| Element | Component Name | Strategic Purpose |
+| :--- | :--- | :--- |
+| **Component** | `TrustSignalBar` | A bar of icons/USPs positioned right under the fold. |
+| **USP 1** | **Nationwide Fitment** | [cite_start]**"Product + Fitment" Solution:** Solves the core customer problem[cite: 1259, 1555]. |
+| **USP 2** | **Multi-Brand Choice** | [cite_start]**The Digital Gap Advantage:** Positions the site as superior to single-brand fitters like Ironman 4x4[cite: 1165, 1228, 1229]. |
+| **USP 3** | **Expert Warranties** | [cite_start]**Weaponize Warranty Data:** Highlights key policies like **"5-Year Unlimited KM Warranty"** (EFS/Formula) or **"Lifetime Warranty"** (Takla)[cite: 1173, 1608]. |
+| **USP 4** | **Safety Certified** | [cite_start]**Compliance:** Features **ADR Certified** and **SABS Approved** logos for armour[cite: 1695, 1702]. |
+
+### 5. Product & Content Strategy (The Persona Split)
+
+[cite_start]This section executes the strategy to segment users by **Persona** ("Purist" vs. "Adventurer") and **Product Tier** ("Good-Better-Best")[cite: 708, 1431, 1433].
+
+| Element | Component Name | Strategic Purpose |
+| :--- | :--- | :--- |
+| **Section 1: Armour** | `ArmourCategorySplit` | [cite_start]Guides the user based on the **Purist vs. Aesthetic** split[cite: 1435, 1440]. |
+| **CTA 1** | **Heavy-Duty & Overland Armour** | Links to the "Purist" category (e.g., `/by-part/bumpers/heavy-duty-overland/`). [cite_start]Pitches: **Function, Recovery Points, Gobi-X, Wildog, Onca**[cite: 1436, 1439]. |
+| **CTA 2** | **Stylish & Premium Bumpers** | Links to the "Aesthetic" category (e.g., `/by-part/bumpers/stylish-premium/`). [cite_start]Pitches: **Aesthetics, Integrated LEDs, Hamer, Rhino 4x4**[cite: 1441, 1443]. |
+| **Section 2: Suspension** | `SuspensionGBBSplit` | [cite_start]Guides the user through the **Good-Better-Best** market structure[cite: 1457, 1464]. |
+| **CTA 1** | **Performance & Racing** | [cite_start]**"BEST" Tier:** Links to Fox/KONI/OME BP-51[cite: 1465, 1468]. |
+| **CTA 2** | **Heavy-Duty & Touring** | [cite_start]**"BETTER" Tier:** Links to Tough Dog Foam Cell, EFS XTR, Raw 4x4[cite: 1466, 1469]. |
+| **CTA 3** | **Value & Comfort Lifts** | [cite_start]**"GOOD" Tier:** Links to Formula 4x4 Comfort, Mikem, Econo-Lift[cite: 1470, 1471]. |
+
+### 6. Content Funnel (The Authority Builder)
+
+[cite_start]This section drives traffic to key SEO pages that act as **expert consultations**, replicating the advice a customer would get at a fitment centre[cite: 1122, 1125, 1509].
+
+| Element | Component Name | Strategic Purpose |
+| :--- | :--- | :--- |
+| **Headline** | `ContentFunnelHeadline` | **"The Expert's Guide: Read Before You Buy"** |
+| **Content Card 1** | **OME vs. Ironman vs. Raw 4x4** | [cite_start]**"Versus Content"** [cite: 1512][cite_start]: Captures high-intent search traffic and acts as an objective guide to the core suspension debate[cite: 1513, 1514]. |
+| **Content Card 2** | **Why a Tow Ball is Not a Recovery Point** | [cite_start]**Safety/Problem-Solve** [cite: 1537][cite_start]: Builds trust and cross-sells to **Rated Recovery Points** and **Wild Dog 4x4 Recovery Gear**[cite: 1538, 1483, 1494]. |
+| **Content Card 3** | **Takla Seat Covers: Lifetime Warranty Fabric Guide** | [cite_start]**Niche/Upsell** [cite: 1535][cite_start]: Focuses on the **Lifetime Warranty** to pull users into the high-margin **Interior Protection** category[cite: 1612, 1956]. |
+
+This structure ensures your Next.js application immediately addresses all major customer needs and implements the strategic advantages identified in the market research.
