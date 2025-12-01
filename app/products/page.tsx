@@ -5,15 +5,9 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { getAllProducts, getProductsByCategory } from '@/lib/data/products';
 
-export const dynamic = 'force-dynamic';
+import { formatPrice } from '@/lib/utils/formatPrice';
 
-function formatPrice(price: number): string {
-  return new Intl.NumberFormat('en-ZA', {
-    style: 'currency',
-    currency: 'ZAR',
-    minimumFractionDigits: 0,
-  }).format(price);
-}
+export const dynamic = 'force-dynamic';
 
 interface ProductsPageProps {
   searchParams: { category?: string };
@@ -31,9 +25,9 @@ export default function ProductsPage({ searchParams }: ProductsPageProps) {
 
   // Category descriptions
   const categoryDescriptions: Record<string, string> = {
-    Suspension: 'Suspension systems for Toyota Land Cruiser, Hilux, and Ranger. From EFS touring kits to Tough Dog Foam Cell Pro shocks.',
+    Suspension: 'Suspension systems for Toyota Land Cruiser 300, 76, 78, and 79. From EFS touring kits to Tough Dog Foam Cell Pro shocks.',
     Armour: 'Front and rear protection systems. MCC bullbars, Onca rock sliders, and complete armour packages for serious off-road builds.',
-    Interior: 'Interior protection from Takla. Seat covers, floor mats, and load liners that preserve your Toyota cabin.',
+    Interior: 'Interior protection from Takla. Seat covers, floor mats, and load liners that preserve your Toyota Land Cruiser cabin.',
     Recovery: 'Recovery gear and safety equipment. Wild Dog recovery kits, rated recovery points, and essential off-road safety gear.',
   };
 
@@ -53,7 +47,7 @@ export default function ProductsPage({ searchParams }: ProductsPageProps) {
             <p className="text-lg text-gray-600">
               {selectedCategory && categoryDescriptions[selectedCategory]
                 ? categoryDescriptions[selectedCategory]
-                : 'Browse our complete range of Toyota Land Cruiser, Hilux, and 4x4 accessories. From suspension to armour, interior protection to recovery gear.'}
+                : 'Browse our complete range of Toyota Land Cruiser 300, 76, 78, and 79 accessories. From suspension to armour, interior protection to recovery gear.'}
             </p>
           </div>
 

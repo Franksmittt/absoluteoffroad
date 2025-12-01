@@ -5,38 +5,32 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { getProductsByBrand } from '@/lib/data/products';
 
-function formatPrice(price: number): string {
-  return new Intl.NumberFormat('en-ZA', {
-    style: 'currency',
-    currency: 'ZAR',
-    minimumFractionDigits: 0,
-  }).format(price);
-}
+import { formatPrice } from '@/lib/utils/formatPrice';
 
 const vehicleSegments = [
   {
-    title: 'Toyota Hilux & Fortuner',
-    subtitle: 'IMV Platform Dominance',
-    copy: 'The largest addressable market in South Africa. Corrugations and permanent overland loads demand constant-load rear solutions and upgraded front struts.',
-    highlights: ['40mm Lift Baseline', '0-500kg Load Profiles', 'Leaf + Coil Ecosystem'],
+    title: 'Land Cruiser 300',
+    subtitle: 'Luxury Overland',
+    copy: 'The perfect balance of on-road handling and off-road capability. EFS XTR kits correct factory nose dive, improve approach angles, and increase load-carrying stability without sacrificing luxury ride quality.',
+    highlights: ['XTR 50mm Lift', 'Dynamic Motion Control', 'Big Bore Design'],
   },
   {
-    title: 'Ford Ranger (T6/T7/Next-Gen)',
-    subtitle: 'Lifestyle + Performance',
-    copy: 'Ranger owners chase stance and stability. The EFS XTR range unlocks 50mm lift, stable towing manners and future-proof fitment for Next-Gen platforms.',
-    highlights: ['XTR 50mm Struts', 'Medium & Heavy Leaf Packs', '33" Tyre Ready'],
+    title: 'Land Cruiser 76 (Station Wagon)',
+    subtitle: 'Purebred Station Wagon',
+    copy: 'Solve the harsh ride of the 76 Station Wagon. Elite Comfort kits use specialized valving and rear leaf springs to smooth out bumps while providing 40-50mm lift for technical trails.',
+    highlights: ['Comfort Valving', 'Wagon-Specific Springs', '40-50mm Lift'],
   },
   {
-    title: 'Land Cruiser 70 Series',
-    subtitle: 'Workhorse Reliability',
-    copy: 'Agriculture and mining fleets need fade-free damping. Remote reservoir X-Treme shocks and upgraded coils keep Cruisers planted with 500kg+ payloads.',
-    highlights: ['X-Treme Shocks', 'Bullbar Coils', 'Caster Correction'],
+    title: 'Land Cruiser 78 (Troop Carrier)',
+    subtitle: 'Expedition Vessel',
+    copy: 'Built for fully-loaded Troopy conversions. X-Treme heavy-duty kits feature massive 45mm shocks and constant load springs (500kg+) to support rooftop tents, drawer systems, and water tanks.',
+    highlights: ['X-Treme 45mm Shocks', 'Constant Load 500kg+', 'Expedition Ready'],
   },
   {
-    title: 'Suzuki Jimny JB74',
-    subtitle: 'Lightweight Specialist',
-    copy: 'Softly valved shocks and matched coils keep the featherweight Jimny compliant on corrugations without the teeth-rattling ride common with generic kits.',
-    highlights: ['Complete 40mm Kit', 'Progressive Valving', 'Bundled Hardware'],
+    title: 'Land Cruiser 79 (Pickup / Bakkie)',
+    subtitle: 'The Workhorse',
+    copy: 'The standard for South African farmers and miners. XTR kits offer 50mm lift with 300kg-500kg load capacity, designed to handle corrugated roads while carrying permanent payloads.',
+    highlights: ['XTR 50mm Lift', 'Configurable Load', 'GVM Upgrade Potential'],
   },
 ];
 
@@ -66,51 +60,51 @@ const sellingPoints = [
 
 const skuHighlights = [
   {
-    sku: 'EFS Elite Front Struts',
-    platform: 'Hilux / Fortuner',
-    insight: 'Pre-assembled 40mm lift struts tame brake dive the moment a bullbar or winch goes on.',
+    sku: 'EFS XTR 50mm Lift Kit',
+    platform: 'Land Cruiser 300',
+    insight: 'Perfect balance of on-road handling and off-road capability. 40mm piston / 64mm body for superior heat dissipation on long corrugated roads.',
   },
   {
-    sku: 'Comfort & Constant Leaf Packs',
-    platform: 'Hilux / Ranger',
-    insight: 'Comfort restores ride quality for lightly loaded beds, while Constant Load keeps canopy rigs level.',
+    sku: 'EFS Elite Comfort Kit',
+    platform: 'Land Cruiser 76',
+    insight: 'Wagon-specific comfort valving and specialized rear leaf springs solve the harsh ride while providing 40-50mm lift.',
   },
   {
-    sku: 'EFS XTR / X-Treme Shocks',
-    platform: 'Ranger / Land Cruiser',
-    insight: 'Large-bore and remote-reservoir options keep heavy vehicles in control on corrugations.',
+    sku: 'EFS X-Treme Heavy Duty Kit',
+    platform: 'Land Cruiser 78',
+    insight: 'Massive 45mm bore shocks and constant load springs (500kg+) built for fully-loaded expedition Troopy conversions.',
   },
   {
-    sku: 'Jimny JB74 40mm Kit',
-    platform: 'Suzuki Jimny',
-    insight: 'Balanced coils and soft-valved shocks built for the lightweight chassis, with all hardware included.',
+    sku: 'EFS XTR Workhorse Kit',
+    platform: 'Land Cruiser 79',
+    insight: 'Configurable load options (0-300kg or 300-500kg) with 50mm lift. GVM upgrade potential for farmers and miners.',
   },
 ];
 
 const curatedKits = [
   {
-    title: 'LC79 Constant Load Touring Kit',
-    summary: 'X-Treme remote reservoir shocks, 500kg constant leafs, 0-200kg front coils, greasable shackles and caster correction—keeps dual tanks, campers and barwork planted.',
-    highlights: ['+500kg ready', 'Caster correction included', 'Recommended with MCC Post Type bar'],
-    cta: { label: 'Schedule LC79 consult', href: '/contact' },
+    title: 'LC300 XTR 50mm Lift Kit',
+    summary: 'XTR shocks with 40mm piston / 64mm body, Dynamic Motion Control valving, and 50mm lift. Corrects factory nose dive and improves approach angles without sacrificing luxury ride.',
+    highlights: ['50mm lift', 'Big bore design', '3 Year / 100,000km warranty'],
+    cta: { label: 'View LC300 Kit', href: '/vehicles/land-cruiser-300' },
   },
   {
-    title: 'Hilux / Fortuner Daily + Application Lift',
-    summary: 'Elite pre-assembled 40mm struts, comfort or medium leaf options, bushes and hardware—balance weekday ride quality with weekend payloads.',
-    highlights: ['Plug-and-play struts', 'Comfort & constant leafs', 'Perfect with Rocker bar + canopy'],
-    cta: { label: 'Plan Hilux setup', href: '/contact' },
+    title: 'LC76 Elite Comfort Kit',
+    summary: 'Comfort valved shocks and wagon-specific rear leaf springs solve the harsh ride. Includes U-bolts, polyurethane bushes, and greaseable shackles for complete overhaul.',
+    highlights: ['Comfort valving', 'Wagon-specific', '40-50mm lift'],
+    cta: { label: 'View LC76 Kit', href: '/vehicles/land-cruiser-76' },
   },
   {
-    title: 'Ranger XTR 50mm Lifestyle Pack',
-    summary: 'XTR struts, medium leafs and heavy-duty shackles tame camper shells and recovery gear on T6/T7/T9 Rangers without sacrificing stance.',
-    highlights: ['Next-Gen compatible', 'Up to 300kg payload', 'Pairs with Pegasus alloy bar'],
-    cta: { label: 'Book Ranger fitment', href: '/contact' },
+    title: 'LC78 X-Treme Expedition Kit',
+    summary: 'Heavy-duty 45mm bore shocks and constant load springs (500kg+) for fully-loaded Troopy conversions. Eliminates boat-like swaying and supports rooftop tents, drawers, and water tanks.',
+    highlights: ['45mm piston', '500kg+ constant load', 'Expedition ready'],
+    cta: { label: 'View LC78 Kit', href: '/vehicles/land-cruiser-78' },
   },
   {
-    title: 'Jimny JB74 Expedition Kit',
-    summary: '40mm coils, soft-valved shocks, steering damper and all hardware to keep the featherweight chassis stable on corrugations.',
-    highlights: ['All hardware packaged', 'Maintains factory comfort', 'Perfect for rooftop tent builds'],
-    cta: { label: 'Secure Jimny kit', href: '/contact' },
+    title: 'LC79 XTR Workhorse Kit',
+    summary: 'Configurable load options (0-300kg or 300-500kg) with 50mm lift. Includes caster correction bushes, greasable shackles, and U-bolts. GVM upgrade potential for farmers and miners.',
+    highlights: ['Configurable load', '50mm lift', 'GVM upgrade potential'],
+    cta: { label: 'View LC79 Kit', href: '/vehicles/land-cruiser-79' },
   },
 ];
 
@@ -132,16 +126,16 @@ export default function EFSSuspensionPage() {
             </h1>
             <p className="text-lg md:text-2xl text-white/80 leading-relaxed">
               Engineered in Australia, validated on 600,000 km of corrugated gravel and heavy-load bakkies.
-              Discover the suspension catalogue that keeps Hilux, Ranger, Cruiser and Jimny builds comfortable, level and reliable.
+              Discover the suspension catalogue that keeps Land Cruiser 300, 76, 78, and 79 builds comfortable, level and reliable.
             </p>
           </div>
 
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { label: '40mm – 50mm', body: 'Standard lift baseline for Hilux, Ranger, Cruiser' },
+              { label: '40mm – 50mm', body: 'Standard lift baseline for Land Cruiser models' },
               { label: '0-500kg', body: 'Constant load coverage for every overland profile' },
               { label: '3-Year / 100 000km', body: 'Warranty coverage direct from EFS' },
-              { label: '20 Anchor SKUs', body: 'Curated to the highest velocity platforms' },
+              { label: '4 Complete Kits', body: 'Curated for Land Cruiser 300, 76, 78, and 79' },
             ].map((item) => (
               <div key={item.label} className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur">
                 <p className="text-3xl font-black text-accent-400">{item.label}</p>
@@ -248,9 +242,9 @@ export default function EFSSuspensionPage() {
               <p className="text-sm font-bold uppercase tracking-[0.3em] text-gray-500 mb-3">
                 Vehicle Ecosystems
               </p>
-              <h2 className="text-4xl font-black text-gray-900 mb-4">Platforms That Drive Volume</h2>
+              <h2 className="text-4xl font-black text-gray-900 mb-4">Land Cruiser Platform Focus</h2>
               <p className="text-lg text-gray-600">
-                The Toyota IMV platform, Ford’s T6 Ranger, Land Cruiser 70 Series and the emergent Jimny JB74 make up the high-velocity backbone. Each segment carries unique damping, spring-rate and hardware needs, captured below.
+                Land Cruiser 300, 76, 78, and 79 Series each have unique suspension needs. From luxury overlanding to heavy-duty workhorse applications, EFS provides tailored solutions for every Land Cruiser build.
               </p>
             </div>
             <div className="flex-1 grid grid-cols-2 gap-4">
@@ -291,9 +285,9 @@ export default function EFSSuspensionPage() {
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <p className="text-sm font-bold uppercase tracking-[0.3em] text-gray-500 mb-4">Product Spotlight</p>
-            <h2 className="text-4xl font-black text-gray-900 mb-4">Top EFS SKUs for SA Terrain</h2>
+            <h2 className="text-4xl font-black text-gray-900 mb-4">Top EFS Kits for Land Cruiser</h2>
             <p className="text-lg text-gray-600">
-              These anchor SKUs cover Hilux, Ranger, Cruiser and Jimny applications—with matched attach items like bush kits, greasable shackles and caster correction.
+              These complete kits are tailored for Land Cruiser 300, 76, 78, and 79—with matched components like bush kits, greasable shackles and caster correction.
             </p>
           </div>
 
@@ -354,7 +348,7 @@ export default function EFSSuspensionPage() {
               <ul className="space-y-3 text-white/80">
                 <li>• Tell us your load profile and we’ll recommend Comfort, Medium or Constant-load options.</li>
                 <li>• Get bundled quotes with bushes, shackles, U-bolts and hardware included.</li>
-                <li>• Connect with certified fitment partners if you want professional installation.</li>
+                <li>• Get professional installation support and guidance.</li>
               </ul>
             </div>
             <div className="bg-white/5 border border-white/10 rounded-3xl p-8">

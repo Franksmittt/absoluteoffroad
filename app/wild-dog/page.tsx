@@ -5,13 +5,7 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { getProductsByBrand } from '@/lib/data/products';
 
-function formatPrice(price: number): string {
-  return new Intl.NumberFormat('en-ZA', {
-    style: 'currency',
-    currency: 'ZAR',
-    minimumFractionDigits: 0,
-  }).format(price);
-}
+import { formatPrice } from '@/lib/utils/formatPrice';
 
 const heroStats = [
   { label: 'Hunter & K9 Series', body: 'Locally-fabricated bullbars, bumpers and cages for hunting, safari and agricultural fleets.' },

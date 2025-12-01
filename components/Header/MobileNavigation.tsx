@@ -207,13 +207,6 @@ export default function MobileNavigation() {
                   >
                     Guides & Builds
                   </Link>
-                  <Link
-                    href="/fitment-partners"
-                    onClick={handleNavLink}
-                    className="px-4 py-3 rounded-lg bg-white/5 hover:bg-white/10 text-white font-semibold"
-                  >
-                    Fitment Partners
-                  </Link>
                 </nav>
 
                 {/* Utility Links */}

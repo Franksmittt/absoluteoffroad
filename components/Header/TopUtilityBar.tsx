@@ -6,9 +6,7 @@ import Link from 'next/link';
 import { SettingsIcon } from '@/components/Icons';
 
 const utilities = [
-  { label: 'Need Fitment?', href: '/fitment-partners', highlight: true },
   { label: 'Contact: +27 10 123 4567', href: 'tel:+27101234567' },
-  { label: 'Workshop Network', href: '/fitment-partners' },
   { label: 'Track Order', href: '/track-order' },
   { label: 'My Account', href: '/account' },
   { label: 'Cart', href: '/cart' },
@@ -31,9 +29,7 @@ export default function TopUtilityBar() {
             <Link
               key={item.label}
               href={item.href}
-              className={`transition-colors hover:text-white ${
-                item.highlight ? 'text-accent-400' : ''
-              }`}
+              className="transition-colors hover:text-white"
             >
               {item.label}
             </Link>

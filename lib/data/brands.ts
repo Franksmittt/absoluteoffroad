@@ -14,8 +14,8 @@ export const brandShowcase: BrandInfo[] = [
     href: '/efs-suspension',
     tagline: 'Foam Cell Pro touring, heavy load springs and BP51-level control without the price shock.',
     summary:
-      'Australian-developed suspension systems tuned for African payloads—perfect for Land Cruiser 70/200 fleets, Hilux canopy builds and Fortuner family rigs.',
-    focus: 'Toyota Land Cruiser & Hilux load support',
+      'Australian-developed suspension systems tuned for African payloads—perfect for Land Cruiser 70 and 300 Series fleets.',
+    focus: 'Toyota Land Cruiser load support',
   },
   {
     name: 'Opposite Lock',
@@ -32,7 +32,7 @@ export const brandShowcase: BrandInfo[] = [
     href: '/tough-dog-suspension',
     tagline: 'Foam Cell, Ralph big-bore shocks and 9-stage adjustables for serious weight.',
     summary:
-      'Touring-proven suspension that keeps Land Cruiser 70/300 and Hilux rigs level with campers, dual tanks and steel barwork.',
+      'Touring-proven suspension that keeps Land Cruiser 70 and 300 Series rigs level with campers, dual tanks and steel barwork.',
     focus: 'Heavy Toyota touring payloads',
   },
   {
@@ -50,7 +50,7 @@ export const brandShowcase: BrandInfo[] = [
     href: '/takla',
     tagline: 'Signature seat covers, Takmats and load liners that preserve interiors.',
     summary:
-      'Lifetime-warranted interior protection tailored to Land Cruiser, Prado and Hilux cabins—keeping leather and electronics perfect.',
+      'Lifetime-warranted interior protection tailored to Land Cruiser cabins—keeping leather and electronics perfect.',
     focus: 'Toyota interior preservation',
   },
   {
@@ -59,8 +59,8 @@ export const brandShowcase: BrandInfo[] = [
     href: '/mcc-4x4',
     tagline: 'Post, Rocker and Pegasus bars with ADR compliance at value-premium pricing.',
     summary:
-      'Winch-ready armour for Land Cruiser, Hilux, Ranger and LC300 builds with alloy options for radar-heavy platforms.',
-    focus: 'Toyota Land Cruiser & Hilux armour',
+      'Winch-ready armour for Land Cruiser builds with alloy options for radar-heavy platforms.',
+    focus: 'Toyota Land Cruiser armour',
   },
   {
     name: 'Wild Dog 4x4',

@@ -6,6 +6,15 @@ import Link from 'next/link';
 import { PhoneIcon, MailIcon, FacebookIcon, InstagramIcon, YoutubeIcon, TwitterIcon } from '@/components/Icons';
 
 const footerLinks = {
+  featured: {
+    title: 'Featured Vehicles',
+    links: [
+      { label: 'Land Cruiser 300', href: '/vehicles/land-cruiser-300' },
+      { label: 'Land Cruiser 76 Wagon', href: '/vehicles/land-cruiser-76' },
+      { label: 'Land Cruiser 78 Troopy', href: '/vehicles/land-cruiser-78' },
+      { label: 'Land Cruiser 79', href: '/vehicles/land-cruiser-79' },
+    ],
+  },
   shop: {
     title: 'Shop',
     links: [
@@ -23,7 +32,6 @@ const footerLinks = {
   support: {
     title: 'Support',
     links: [
-      { label: 'Fitment Partners', href: '/fitment-partners' },
       { label: 'Track Order', href: '/track-order' },
       { label: 'Shipping Info', href: '/shipping' },
       { label: 'Returns', href: '/returns' },
@@ -63,7 +71,7 @@ export default function Footer() {
 
       <div className="container mx-auto px-4 py-16 relative z-10">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-12 mb-12">
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <motion.div
@@ -148,7 +156,7 @@ export default function Footer() {
         <div className="border-t border-white/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-sm">
-              © {new Date().getFullYear()} Absolute Offroad. All rights reserved.
+              © 2024 Absolute Offroad. All rights reserved.
             </p>
             <div className="flex flex-wrap gap-6 text-sm text-gray-400">
               <Link href="/privacy" className="hover:text-white transition-colors">

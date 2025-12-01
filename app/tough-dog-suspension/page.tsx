@@ -5,101 +5,95 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { getProductsByBrand } from '@/lib/data/products';
 
-function formatPrice(price: number): string {
-  return new Intl.NumberFormat('en-ZA', {
-    style: 'currency',
-    currency: 'ZAR',
-    minimumFractionDigits: 0,
-  }).format(price);
-}
+import { formatPrice } from '@/lib/utils/formatPrice';
 
 const heroStats = [
-  { label: 'Foam Cell Pro', body: '41 mm big-bore monotubes with foam inserts that stay cool on 300 km corrugations.' },
-  { label: 'Ralph Big-Bores', body: '53 mm monsters for LC70 fleets and armoured LC300s carrying 500 kg constant loads.' },
-  { label: '9-Stage Adjustables', body: 'Dial in Hilux, Prado and Ranger damping for empty commutes or weekend payloads.' },
-  { label: 'Toyota First', body: 'LC70/79, LC300, Prado, Hilux, Fortuner and Ranger kits with bundled hardware + caster correction.' },
+  { label: 'Foam Cell Pro', body: '41 mm big-bore monotubes with foam inserts that stay cool on 300 km corrugations.' },
+  { label: 'Ralph Big-Bores', body: '53 mm monsters for Land Cruiser 78 and 79 fleets carrying 500 kg constant loads.' },
+  { label: '9-Stage Adjustables', body: 'Dial in Land Cruiser 300 and 79 damping for empty commutes or heavy towing with the turn of a knob.' },
+  { label: 'Land Cruiser Focus', body: 'Complete kits for Land Cruiser 300, 76, 78, and 79 with bundled hardware + caster correction.' },
 ];
 
 const sellingPoints = [
   {
     title: 'Load-Matched Engineering',
     bullets: [
-      'Comfort, Medium and Constant load coils/leafs cover empty daily drivers through 500 kg canopy rigs.',
+      'Comfort, Medium and Constant load coils/leafs cover empty daily drivers through 500 kg canopy rigs.',
       'Caster correction bushes, UCAs and shackles arrive in the same crate so alignment is perfect after lift.',
     ],
   },
   {
     title: 'Extreme Heat Resistance',
     bullets: [
-      'Foam Cell inserts displace heat faster than traditional monotubes—critical for LC70s towing in 45 °C Karoo summers.',
+      'Foam Cell inserts displace heat faster than traditional monotubes—critical for Land Cruiser 70 Series towing in 45 °C Karoo summers.',
       'Ralph dampers run massive oil volumes and external reservoirs for mine-spec Cruisers and expedition LC300s.',
     ],
   },
   {
     title: '9-Stage Adjustables',
     bullets: [
-      'Quickly soften for school runs or tighten damping for loaded trailers on Hilux, Fortuner and Prado builds.',
-      'Dial front and rear independently so bullbars, winches and campers don’t dictate ride harshness.',
+      'Quickly soften for city driving or tighten damping for heavy towing on Land Cruiser 300 and 79 builds.',
+      'Dial front and rear independently so bullbars, winches and campers don\'t dictate ride harshness.',
     ],
   },
 ];
 
 const platformKits = [
   {
-    platform: 'Land Cruiser 70 / 79',
-    summary: 'Ralph 53 mm shocks, heavy leaf packs, 0‑500 kg coils, greasable shackles and caster correction keep dual tanks and campers level.',
-    highlights: ['500 kg constant load', 'Foam Cell Pros', 'Caster correction bundled'],
+    platform: 'Land Cruiser 300',
+    summary: '9-Stage Adjustable shocks with 40mm lift, allowing you to dial in perfect ride for city driving or heavy towing. GVM upgrade compatible.',
+    highlights: ['9-Stage Adjustable', '40mm lift', 'GVM ready'],
   },
   {
-    platform: 'Land Cruiser 300 / Prado',
-    summary: 'Adjustable struts, rear coils, UCAs and load assist airbags tuned for luxury overlanders carrying dual spares and long-range tanks.',
-    highlights: ['No KDSS drama', 'Adjust-on-the-fly', 'Pairs with Takla Platinum'],
+    platform: 'Land Cruiser 76 (Station Wagon)',
+    summary: 'Foam Cell "Comfort" kit with wagon-specific leaf springs to eliminate rear-end harshness. 50mm lift with comfort valving.',
+    highlights: ['Comfort valving', 'Wagon-specific', '50mm lift'],
   },
   {
-    platform: 'Hilux / Fortuner',
-    summary: 'Pre-assembled front struts, comfort/medium/constant rear leafs and 9-stage adjustables for dual-life double cabs.',
-    highlights: ['Bolt-in struts', 'Ride dial control', 'Up to 50 mm lift'],
+    platform: 'Land Cruiser 78 (Troop Carrier)',
+    summary: 'Ralph 53mm big-bore shocks with constant load springs (500kg+) for fully-loaded expedition Troopies. The biggest shock on the market.',
+    highlights: ['Ralph 53mm', '500kg+ constant load', 'Expedition proven'],
   },
   {
-    platform: 'Ranger T6/T9 & Raptor',
-    summary: 'Adjustables, leaf upgrades and UCA kits tuned for Next-Gen Rangers with campers, rooftop tents or Raptor width.',
-    highlights: ['Next-Gen compatible', 'Raptor-specific width', 'Ready for 33"-35" tyres'],
+    platform: 'Land Cruiser 79 (Pickup / Bakkie)',
+    summary: '9-Stage Adjustable workhorse kit with configurable load options. Perfect for vehicles that alternate between empty and loaded states.',
+    highlights: ['9-Stage Adjustable', 'Configurable load', '50mm lift'],
   },
 ];
 
 const skuHighlights = [
-  { sku: 'Foam Cell Pro 41 mm', detail: 'Large oil capacity monotubes with foam inserts that stay cool on corrugations.' },
-  { sku: 'Ralph 53 mm Shocks', detail: 'Mine-spec dampers for LC70/LC300 carrying bullbars, dual tanks, winches and campers.' },
-  { sku: 'Upper Control Arms', detail: 'Correct alignment on lifted Hilux, Ranger and LC300 platforms—no tyre scrub.' },
-  { sku: 'Caster Correction Bushes', detail: 'Bundled with LC70 kits to keep steering tracking true after bullbar and winch installs.' },
-  { sku: 'Load Assist Airbags', detail: 'Supplementary support for LC300/Prado towing boats or caravans without harsh spring rates.' },
-  { sku: 'Adjustable Steering Dampers', detail: 'Track-straight Hilux and LC70 builds even with 35" tyres and deep ruts.' },
+  { sku: '9-Stage Adjustable (BMX Series)', detail: 'External knob adjustment with 9 distinct settings. Perfect for Land Cruiser 300 and 79 that alternate between empty and loaded.' },
+  { sku: 'Ralph 53mm Big Bore', detail: 'The largest 4WD shock absorber available. 53mm bore with 22mm chrome rod for Land Cruiser 78 expedition builds.' },
+  { sku: 'Foam Cell 41mm', detail: 'Foam Cell technology eliminates shock fade on long corrugated roads. Perfect for Land Cruiser 76 comfort upgrades.' },
+  { sku: 'Caster Correction Bushes', detail: 'Bundled with Land Cruiser 79 kits to keep steering tracking true after bullbar and winch installs.' },
+  { sku: 'Comfort Leaf Springs', detail: 'Wagon-specific 0-300kg comfort springs for Land Cruiser 76 to eliminate harsh rear-end ride.' },
+  { sku: 'Constant Load Springs', detail: '500kg+ constant load springs for Land Cruiser 78 and 79 carrying permanent payloads.' },
 ];
 
 const curatedKits = [
   {
-    title: 'LC70 500 kg Constant Load',
-    summary: 'Foam Cell Pros or Ralphs, 500 kg leaves, 0‑200 kg coils, greasable shackles and caster correction keep dual tanks and canopies planted.',
-    highlights: ['500 kg rated', 'Includes bushes + shackles', 'Tuned for MCC/Post bars'],
-    cta: { label: 'Book LC70 suspension consult', href: '/contact' },
+    title: 'LC300 9-Stage Adjustable Kit',
+    summary: '9-Stage Adjustable shocks with 40mm lift. Dial in perfect ride for luxury city driving or heavy towing. GVM upgrade compatible.',
+    highlights: ['9-Stage Adjustable', '40mm lift', 'GVM ready'],
+    cta: { label: 'View LC300 Kit', href: '/vehicles/land-cruiser-300' },
   },
   {
-    title: 'LC300 Pegasus Touring',
-    summary: 'Adjustable front struts, progressive rear coils, load assist airbags and UCAs paired with Pegasus armour + Takla Platinum.',
-    highlights: ['9-stage adjustables', 'Airbag-ready', 'Radar-safe compatibility'],
-    cta: { label: 'Design LC300 stack', href: '/contact' },
+    title: 'LC76 Foam Cell Comfort Kit',
+    summary: 'Foam Cell "Comfort" suspension with wagon-specific leaf springs. Eliminates harsh rear-end ride while providing 50mm lift.',
+    highlights: ['Comfort valving', 'Wagon-specific', '50mm lift'],
+    cta: { label: 'View LC76 Kit', href: '/vehicles/land-cruiser-76' },
   },
   {
-    title: 'Hilux Legend Dual-Life',
-    summary: 'Pre-assembled 40 mm struts, comfort/medium leaf packs, adjustable shocks and alignment hardware for commuter + overland duty.',
-    highlights: ['Daily comfort', 'Weekend payload', 'Caster + brake line brackets included'],
-    cta: { label: 'Plan Hilux setup', href: '/contact' },
+    title: 'LC78 Ralph Expedition Kit',
+    summary: 'Ralph 53mm big-bore shocks with constant load springs (500kg+) for fully-loaded Troopy conversions. The ultimate expedition setup.',
+    highlights: ['Ralph 53mm', '500kg+ constant load', 'Expedition proven'],
+    cta: { label: 'View LC78 Kit', href: '/vehicles/land-cruiser-78' },
   },
   {
-    title: 'Ranger/Raptor Lifestyle',
-    summary: 'Next-Gen specific coils, leafs, 9-way adjustables and UCAs with Pegasus alloy compatibility and Lightforce wiring ready.',
-    highlights: ['Raptor width option', 'Camber correction', '33"-35" tyre friendly'],
-    cta: { label: 'Spec Ranger suspension', href: '/contact' },
+    title: 'LC79 9-Stage Adjustable Workhorse',
+    summary: '9-Stage Adjustable kit with configurable load options (0-300kg or 300-500kg). Perfect for vehicles that alternate between empty and loaded.',
+    highlights: ['9-Stage Adjustable', 'Configurable load', '50mm lift'],
+    cta: { label: 'View LC79 Kit', href: '/vehicles/land-cruiser-79' },
   },
 ];
 
@@ -115,7 +109,7 @@ export default function ToughDogPage() {
           <p className="text-sm font-bold uppercase tracking-[0.4em] text-accent-400 mb-4">Foam Cell Authority</p>
           <h1 className="text-4xl md:text-6xl font-black leading-tight mb-5">Tough Dog Suspension South Africa</h1>
           <p className="text-xl text-white/80 max-w-3xl">
-            Heavy payload, corrugation-proof suspension developed in Australia and tuned for Toyota Land Cruiser, Hilux, Prado and Ranger platforms.
+            Heavy payload, corrugation-proof suspension developed in Australia and tuned for Land Cruiser 300, 76, 78, and 79 platforms.
           </p>
           <div className="mt-10 grid grid-cols-1 md:grid-cols-4 gap-6">
             {heroStats.map((stat) => (
@@ -194,7 +188,7 @@ export default function ToughDogPage() {
             <p className="text-sm font-bold uppercase tracking-[0.3em] text-gray-500 mb-4">Why Tough Dog?</p>
             <h2 className="text-4xl font-black text-gray-900 mb-4">Load Control Meets Comfort</h2>
             <p className="text-lg text-gray-600">
-              Foam Cell Pros, Ralph big-bores, 9-stage adjustables and load-rated coils/leafs keep Toyotas level without beating up passengers.
+              Foam Cell Pros, Ralph big-bores, 9-stage adjustables and load-rated coils/leafs keep Land Cruisers level without beating up passengers.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -220,10 +214,10 @@ export default function ToughDogPage() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row lg:items-center gap-12 mb-16">
             <div className="flex-1">
-              <p className="text-sm font-bold uppercase tracking-[0.3em] text-gray-500 mb-3">Toyota Platforms</p>
+              <p className="text-sm font-bold uppercase tracking-[0.3em] text-gray-500 mb-3">Land Cruiser Platforms</p>
               <h2 className="text-4xl font-black text-gray-900 mb-4">Suspension Kits We Deliver Every Week</h2>
               <p className="text-lg text-gray-600">
-                LC70 farmers, LC300 luxury tourers, Hilux/Fortuner commuters and Ranger lifestyle rigs each need tailored damping and spring rates—Tough Dog covers them all.
+                Land Cruiser 300 luxury tourers, 76 family wagons, 78 expedition Troopies, and 79 workhorse pickups each need tailored damping and spring rates—Tough Dog covers them all.
               </p>
             </div>
           </div>
@@ -255,7 +249,7 @@ export default function ToughDogPage() {
           <div className="text-center max-w-3xl mx-auto mb-12">
             <p className="text-sm font-bold uppercase tracking-[0.3em] text-gray-500 mb-4">Key Hardware</p>
             <h2 className="text-4xl font-black text-gray-900 mb-4">Tough Dog Signatures Worth Knowing</h2>
-            <p className="text-lg text-gray-600">Anchor components that allow us to tune Toyota suspensions precisely.</p>
+            <p className="text-lg text-gray-600">Anchor components that allow us to tune Land Cruiser suspensions precisely.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {skuHighlights.map((item) => (
@@ -274,7 +268,7 @@ export default function ToughDogPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {curatedKits.map((kit) => (
               <div key={kit.title} className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-lg transition-shadow flex flex-col">
-                <p className="text-xs font-bold uppercase tracking-[0.3em] text-gray-500 mb-2">Toyota Build</p>
+                <p className="text-xs font-bold uppercase tracking-[0.3em] text-gray-500 mb-2">Land Cruiser Build</p>
                 <h3 className="text-xl font-black text-gray-900 mb-2">{kit.title}</h3>
                 <p className="text-sm text-gray-600 flex-1">{kit.summary}</p>
                 <ul className="space-y-2 text-sm text-gray-700 my-4">
@@ -305,19 +299,19 @@ export default function ToughDogPage() {
               <p className="text-sm font-bold uppercase tracking-[0.3em] text-accent-400 mb-4">Need Specs?</p>
               <h2 className="text-4xl font-black mb-4">Book the Tough Dog Suspension Desk</h2>
               <p className="text-white/80 leading-relaxed mb-6">
-                We translate bullbars, canopies, dual batteries and trailers into spring rates, shim stacks and damper settings so you don’t guess.
+                We translate bullbars, canopies, dual batteries and trailers into spring rates, shim stacks and damper settings so you don\'t guess.
               </p>
               <ul className="space-y-3 text-white/80">
-                <li>• Provide load sheets and we’ll recommend Comfort, Medium or Constant leaf/coil combos.</li>
+                <li>• Provide load sheets and we\'ll recommend Comfort, Medium or Constant leaf/coil combos.</li>
                 <li>• Receive bundled quotes with bushes, shackles, UCAs and brake line brackets included.</li>
-                <li>• Connect with certified fitment partners for installation and post-install support.</li>
+                <li>• Get professional installation support and post-install guidance.</li>
               </ul>
             </div>
             <div className="bg-white/5 border border-white/10 rounded-3xl p-8">
               <p className="text-sm font-bold uppercase tracking-[0.3em] text-accent-400 mb-3">Ready to Dial It In?</p>
               <h3 className="text-3xl font-black mb-4">Schedule a Tough Dog Consult</h3>
               <p className="text-white/80 mb-6">
-                Share your Toyota platform, accessory list and travel plans. We’ll send a curated product list and fitment timeline.
+                Share your Land Cruiser platform, accessory list and travel plans. We\'ll send a curated product list and fitment timeline.
               </p>
               <Link
                 href="/contact"

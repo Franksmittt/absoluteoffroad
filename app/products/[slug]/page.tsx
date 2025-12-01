@@ -6,13 +6,7 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { getProductBySlug, getAllProducts, getProductsByBrand } from '@/lib/data/products';
 
-function formatPrice(price: number): string {
-  return new Intl.NumberFormat('en-ZA', {
-    style: 'currency',
-    currency: 'ZAR',
-    minimumFractionDigits: 0,
-  }).format(price);
-}
+import { formatPrice } from '@/lib/utils/formatPrice';
 
 export async function generateStaticParams() {
   const products = getAllProducts();

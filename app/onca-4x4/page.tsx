@@ -5,13 +5,7 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { getProductsByBrand } from '@/lib/data/products';
 
-function formatPrice(price: number): string {
-  return new Intl.NumberFormat('en-ZA', {
-    style: 'currency',
-    currency: 'ZAR',
-    minimumFractionDigits: 0,
-  }).format(price);
-}
+import { formatPrice } from '@/lib/utils/formatPrice';
 
 const heroStats = [
   {
@@ -301,7 +295,7 @@ export default function OncaPage() {
               <ul className="space-y-3 text-white/80">
                 <li>• Confirm airbag certification and insurance documents for each chassis.</li>
                 <li>• Align recovery gear, sliders and suspension upgrades with bar installs.</li>
-                <li>• Coordinate fitment dates with Johannesburg workshop or partner network.</li>
+                <li>• Coordinate fitment dates and installation logistics.</li>
               </ul>
             </div>
             <div className="bg-white/5 border border-white/10 rounded-3xl p-8">

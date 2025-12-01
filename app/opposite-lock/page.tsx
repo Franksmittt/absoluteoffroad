@@ -5,13 +5,7 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { getProductsByBrand } from '@/lib/data/products';
 
-function formatPrice(price: number): string {
-  return new Intl.NumberFormat('en-ZA', {
-    style: 'currency',
-    currency: 'ZAR',
-    minimumFractionDigits: 0,
-  }).format(price);
-}
+import { formatPrice } from '@/lib/utils/formatPrice';
 
 const heroStats = [
   { label: 'Multi-Brand Ecosystem', body: 'Tough Dog, Piak & Opposite Lock armour, Lightforce lighting, Front Runner storage—all curated under one strategy.' },
@@ -42,7 +36,7 @@ const brandSpecialists = [
   {
     name: 'Front Runner & Touring Gear',
     positioning: 'Modular Storage',
-    copy: 'Slimline II racks, drawer systems, fridge slides, water/fuel management and camp storage—born in South Africa, supported nationwide.',
+    copy: 'Slimline II racks, drawer systems, fridge slides, water/fuel management and camp storage—born in South Africa, available nationwide.',
     highlights: ['Slimline II', 'Accessory ecosystem', 'Future-proof mounts'],
   },
 ];

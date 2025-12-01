@@ -63,12 +63,6 @@ export default function PrimaryNavigation() {
         >
           Guides & Builds
         </Link>
-        <Link
-          href="/fitment-partners"
-          className="rounded-full px-5 py-2 transition-colors hover:bg-white/10"
-        >
-          Fitment Partners
-        </Link>
       </nav>
 
       <AnimatePresence>

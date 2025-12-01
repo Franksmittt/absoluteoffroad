@@ -1,0 +1,619 @@
+n================================================================================
+ABSOLUTE OFFROAD - PROJECT DOCUMENTATION
+================================================================================
+
+PROJECT OVERVIEW
+================================================================================
+Absolute Offroad is a premium 4x4 accessories e-commerce platform specializing
+in Toyota Land Cruiser, Hilux, and Ford Ranger upgrades. The site focuses on
+curated product portfolios with guaranteed installation through an Approved
+National Partner Network.
+
+Built with Next.js 14 (App Router), TypeScript, Tailwind CSS, and Framer Motion
+for smooth animations and interactions.
+
+================================================================================
+DESIGN SYSTEM & STYLE GUIDE
+================================================================================
+
+COLOR PALETTE
+--------------------------------------------------------------------------------
+The design system is built around the Absolute Offroad brand identity with
+vibrant, high-contrast colors that convey strength and premium quality.
+
+Brand Colors:
+- Brand Black: #000000 (Primary dark background, headers)
+- Brand Yellow: #FFD700 (Accent color, CTAs, highlights)
+- Brand Blue: #0066FF (Primary action color, links)
+- Brand White: #FFFFFF (Text on dark backgrounds)
+
+Primary Color Scale (Blue):
+- 50-900: Full scale from lightest (#E6F2FF) to darkest (#001433)
+- Default: #0066FF (Bright, energetic blue)
+
+Accent Color Scale (Yellow/Gold):
+- 50-900: Full scale from lightest (#FFF9E6) to darkest (#332B00)
+- Default: #FFD700 (Premium gold/yellow)
+
+Neutral Grays:
+- Used for backgrounds (gray-50, gray-100)
+- Text hierarchy (gray-600, gray-700, gray-900)
+- Borders and dividers (gray-200, gray-300)
+
+TYPOGRAPHY
+--------------------------------------------------------------------------------
+Primary Font: Inter (Google Fonts)
+- Weights: 300, 400, 500, 600, 700, 800, 900
+- Used for: Body text, navigation, UI elements
+- Characteristics: Clean, modern, highly readable
+
+Display Font: Bebas Neue / Impact
+- Used for: Headlines, hero text, large displays
+- Characteristics: Bold, impactful, attention-grabbing
+
+Font Hierarchy:
+- Hero Headlines: 4xl-7xl (text-4xl to text-7xl), font-black
+- Section Headlines: 3xl-5xl (text-3xl to text-5xl), font-black
+- Subheadings: xl-2xl (text-xl to text-2xl), font-bold
+- Body Text: base-lg (text-base to text-lg), font-normal
+- Small Text: xs-sm (text-xs to text-sm), font-semibold
+
+Letter Spacing:
+- Uppercase labels: tracking-[0.3em] (extra wide)
+- Headlines: default tracking
+- Body: default tracking
+
+LAYOUT & SPACING
+--------------------------------------------------------------------------------
+Container System:
+- Max width containers with mx-auto
+- Responsive padding: px-4 (mobile) to px-8 (desktop)
+- Consistent section spacing: pt-32 pb-20 (accounts for fixed header)
+
+Grid System:
+- Responsive grids: grid-cols-1 (mobile) → md:grid-cols-2 → lg:grid-cols-3/4
+- Gap spacing: gap-6 to gap-8 (24px-32px)
+- Card-based layouts with consistent padding
+
+Spacing Scale:
+- Small: 2-4 (8px-16px)
+- Medium: 6-8 (24px-32px)
+- Large: 12-16 (48px-64px)
+- Extra Large: 20+ (80px+)
+
+VISUAL STYLE & LOOK & FEEL
+================================================================================
+
+OVERALL AESTHETIC
+--------------------------------------------------------------------------------
+The design embodies a premium, rugged, yet sophisticated aesthetic that appeals
+to serious 4x4 enthusiasts and fleet managers. The visual language balances:
+
+1. Premium Quality: High-end product photography, clean layouts, sophisticated
+   typography
+2. Rugged Durability: Bold colors, strong contrasts, industrial-inspired
+   elements
+3. Technical Authority: Detailed specifications, fitment data, build guides
+4. South African Context: ZAR pricing, local vehicle focus, regional imagery
+
+DESIGN PRINCIPLES
+--------------------------------------------------------------------------------
+1. Clarity First: Information hierarchy is clear, products are easy to find
+2. Mobile-First: Responsive design that works on all devices
+3. Performance: Fast loading, optimized images, smooth animations
+4. Trust Signals: Stock status, fitment data, partner network emphasis
+5. Conversion Focus: Clear CTAs, easy navigation, prominent pricing
+
+COMPONENT STYLE PATTERNS
+--------------------------------------------------------------------------------
+Cards & Containers:
+- Rounded corners: rounded-2xl to rounded-3xl (16px-24px)
+- Subtle borders: border border-gray-200
+- Shadow system: shadow-sm (hover) → shadow-xl (active)
+- White backgrounds on gray-50 base
+- Hover effects: shadow-xl, scale transforms, color transitions
+
+Buttons & CTAs:
+- Primary: bg-accent-400 (yellow) with text-gray-900, font-black
+- Secondary: bg-gray-900 with text-white
+- Hover states: transform hover:-translate-y-1, shadow-lg
+- Rounded: rounded-xl (12px)
+- Padding: px-8 py-4 (32px horizontal, 16px vertical)
+
+Badges & Labels:
+- Uppercase, bold, wide tracking
+- Rounded-full (pill shape)
+- Accent colors (yellow-400) on dark backgrounds
+- Small text: text-xs to text-sm
+
+Images:
+- Aspect ratios: aspect-square for product images
+- Object-fit: object-contain (products) or object-cover (hero)
+- Hover effects: scale transforms, smooth transitions
+- Lazy loading with Next.js Image optimization
+
+ANIMATIONS & INTERACTIONS
+--------------------------------------------------------------------------------
+Library: Framer Motion
+- Smooth page transitions
+- Scroll-triggered animations
+- Hover state animations
+- Hero carousel transitions
+- Mobile menu animations
+- Stagger effects for grid items
+
+Animation Principles:
+- Subtle and purposeful (not distracting)
+- Performance-optimized (GPU-accelerated)
+- Respects user preferences (reduced motion)
+- Enhances UX without overwhelming
+
+HEADER DESIGN
+--------------------------------------------------------------------------------
+- Fixed position at top (z-50)
+- Dark gradient background: from-brand-black/95 to-brand-black/85
+- Backdrop blur effect for modern glass-morphism
+- Compact height with utility bar above
+- Responsive: Desktop navigation + Mobile hamburger menu
+- Logo adapts based on selected vehicle
+- Search icon with global search functionality
+- Scroll detection: Adds shadow when scrolled
+
+FOOTER DESIGN
+--------------------------------------------------------------------------------
+- Dark background (brand-black)
+- Multi-column layout: Shop, Support, Resources, Company
+- Social media links
+- Newsletter signup
+- Legal links (Privacy, Terms, Cookies)
+- Responsive grid layout
+
+================================================================================
+PAGE INVENTORY & DESCRIPTIONS
+================================================================================
+
+ROOT PAGES
+--------------------------------------------------------------------------------
+
+1. HOME PAGE (/)
+   File: app/page.tsx
+   Description: Main landing page featuring hero carousel, brand showcase,
+   product categories, featured products, build gallery, and newsletter signup.
+   Key Sections:
+   - Hero Section: Rotating carousel with 3 main build concepts
+   - Brand Slider: Showcase of partner brands
+   - Trust Signal Bar: Key metrics and trust indicators
+   - Product Category Splits: Armour and Suspension category showcases
+   - Blog Section: Latest content and guides
+   - Build Gallery: Customer build showcases
+   - Featured Products: Curated product highlights
+   - Newsletter CTA: Email signup
+
+PRODUCT PAGES
+--------------------------------------------------------------------------------
+
+2. PRODUCTS CATALOG (/products)
+   File: app/products/page.tsx
+   Description: Main product listing page with category filtering. Displays
+   all products in a responsive grid with filtering by category (Suspension,
+   Armour, Interior, Recovery). Shows product images, prices, stock status,
+   and category badges.
+   Features:
+   - Category filter buttons
+   - Product grid (1-4 columns responsive)
+   - Price display with sale price support
+   - Stock status indicators
+   - Product badges (New, Sale, etc.)
+   - Search params for category filtering
+
+3. PRODUCT DETAIL PAGE (/products/[slug])
+   File: app/products/[slug]/page.tsx
+   Description: Individual product detail page with comprehensive information.
+   Features full product specifications, fitment data, related products, and
+   detailed descriptions.
+   Key Sections:
+   - Product image gallery
+   - Product name, brand, category
+   - Price (with sale price support)
+   - Stock status
+   - SKU display
+   - Add to Cart button
+   - Vehicle fitment information
+   - Full description
+   - Key features list
+   - Specifications table
+   - Related products from same brand
+   - Breadcrumb navigation
+   Features:
+   - Static generation with generateStaticParams
+   - ZAR currency formatting
+   - Responsive 2-column layout (image + info)
+   - Related products recommendations
+
+VEHICLE PAGES
+--------------------------------------------------------------------------------
+
+4. VEHICLES PAGE (/vehicles)
+   File: app/vehicles/page.tsx
+   Description: Toyota-led fitment strategy page showcasing vehicle platforms
+   and part families. Organized by vehicle type with curated upgrade paths.
+   Key Sections:
+   - Vehicle platform cards (Land Cruiser, Hilux, Prado, etc.)
+   - Part family categories (Armour, Suspension, etc.)
+   - Brand ecosystem showcase
+   - Strategy-focused content
+   Features:
+   - Vehicle-specific navigation
+   - Part category organization
+   - Brand partner links
+   - Build strategy guidance
+
+BRAND PAGES
+--------------------------------------------------------------------------------
+
+5. EFS SUSPENSION (/efs-suspension)
+   File: app/efs-suspension/page.tsx
+   Description: Brand-specific page for EFS Suspension products. Features
+   vehicle segment targeting, product showcases, and technical specifications.
+   Focus on Toyota Hilux, Ford Ranger, Land Cruiser 70, and Suzuki Jimny.
+   Key Sections:
+   - Vehicle segment breakdowns
+   - Product selling points
+   - Technical specifications
+   - Product grid with filtering
+   Features:
+   - Vehicle-specific product filtering
+   - Technical content
+   - Product comparison
+   - Fitment information
+
+6. TOUGH DOG SUSPENSION (/tough-dog-suspension)
+   File: app/tough-dog-suspension/page.tsx
+   Description: Brand page for Tough Dog Suspension, focusing on premium
+   suspension solutions for Land Cruiser platforms, especially LC200 and LC300.
+   Features:
+   - Product showcases
+   - Vehicle fitment focus
+   - Technical specifications
+   - Premium positioning
+
+7. OPPOSITE LOCK (/opposite-lock)
+   File: app/opposite-lock/page.tsx
+   Description: Brand page for Opposite Lock storage and organization solutions.
+   Focus on interior storage, drawer systems, and cargo management.
+   Features:
+   - Storage solutions showcase
+   - Vehicle-specific fitment
+   - Installation information
+
+8. ONCA 4X4 (/onca-4x4)
+   File: app/onca-4x4/page.tsx
+   Description: Brand page for Onca 4x4 armour and protection systems.
+   Focus on bullbars, rock sliders, and complete protection packages.
+   Features:
+   - Armour product showcases
+   - Vehicle fitment data
+   - ADR compliance information
+
+9. TAKLA (/takla)
+   File: app/takla/page.tsx
+   Description: Brand page for Takla interior protection products. Focus on
+   seat covers, floor mats, and load liners for Toyota vehicles.
+   Features:
+   - Interior protection products
+   - Vehicle-specific fitment
+   - Material specifications
+
+10. MCC 4X4 (/mcc-4x4)
+    File: app/mcc-4x4/page.tsx
+    Description: Brand page for MCC 4x4 bullbars and protection systems.
+    Focus on post-style bullbars and complete front-end protection.
+    Features:
+    - Bullbar showcases
+    - Vehicle compatibility
+    - Installation information
+
+11. WILD DOG (/wild-dog)
+    File: app/wild-dog/page.tsx
+    Description: Brand page for Wild Dog recovery gear and safety equipment.
+    Focus on recovery kits, rated recovery points, and off-road safety gear.
+    Features:
+    - Recovery equipment showcases
+    - Safety information
+    - Kit configurations
+
+CONTENT & INFORMATION PAGES
+--------------------------------------------------------------------------------
+
+12. GUIDES PAGE (/guides)
+    File: app/guides/page.tsx
+    Description: Build guides and educational content hub. Currently shows
+    placeholder content for future guides on suspension selection, armour
+    installation, and build processes.
+    Features:
+    - Guide categories
+    - Coming soon placeholders
+    - Educational content structure
+
+13. CONTACT PAGE (/contact)
+    File: app/contact/page.tsx
+    Description: Contact information and consultation booking page. Provides
+    phone, email, and consultation booking information.
+    Features:
+    - Contact information display
+    - Phone and email links
+    - Consultation booking section (placeholder)
+    - Clean, accessible layout
+
+14. FITMENT PARTNERS (/fitment-partners)
+    File: app/fitment-partners/page.tsx
+    Description: Information about the Approved National Partner Network.
+    Details about installation partners and fitment services.
+    Features:
+    - Partner network information
+    - Service area coverage
+    - Partner benefits
+
+LEGAL PAGES
+--------------------------------------------------------------------------------
+
+15. PRIVACY POLICY (/privacy)
+    File: app/privacy/page.tsx
+    Description: Privacy policy and data protection information.
+    Standard legal page for GDPR and POPIA compliance.
+
+16. TERMS OF SERVICE (/terms)
+    File: app/terms/page.tsx
+    Description: Terms of service and user agreement.
+    Standard legal page for e-commerce operations.
+
+17. COOKIES POLICY (/cookies)
+    File: app/cookies/page.tsx
+    Description: Cookie policy and tracking information.
+    Standard legal page for compliance.
+
+================================================================================
+COMPONENT ARCHITECTURE
+================================================================================
+
+HEADER COMPONENTS
+--------------------------------------------------------------------------------
+- Header.tsx: Main header container with scroll detection
+- TopUtilityBar.tsx: Top utility navigation bar
+- PrimaryNavigation.tsx: Desktop navigation menu
+- MobileNavigation.tsx: Mobile hamburger menu
+- AbsoluteOffroadLogo.tsx: Dynamic logo component
+- SearchIcon.tsx: Global search trigger
+- GlobalSearch.tsx: Search modal/overlay
+- HeaderVehicleSelector.tsx: Vehicle selection dropdown
+- UtilityNav.tsx: Utility navigation items
+
+HERO COMPONENTS
+--------------------------------------------------------------------------------
+- HeroSection.tsx: Main hero carousel with 3 slides
+- HeroHeadline.tsx: Hero headline component
+- HeroSubText.tsx: Hero subtitle component
+- FitmentNetworkCTA.tsx: Fitment network call-to-action
+
+PRODUCT COMPONENTS
+--------------------------------------------------------------------------------
+- FeaturedProducts.tsx: Featured products grid
+- ArmourCategorySplit.tsx: Armour category showcase
+- SuspensionGBBSplit.tsx: Suspension category showcase
+
+BRAND COMPONENTS
+--------------------------------------------------------------------------------
+- BrandSlider.tsx: Brand showcase slider/carousel
+
+CONTENT COMPONENTS
+--------------------------------------------------------------------------------
+- BlogSection.tsx: Blog post showcase
+- ContentFunnel.tsx: Content marketing funnel
+- NewsletterCTA.tsx: Newsletter signup component
+
+GALLERY COMPONENTS
+--------------------------------------------------------------------------------
+- BuildGallery.tsx: Customer build showcase gallery
+
+TRUST COMPONENTS
+--------------------------------------------------------------------------------
+- TrustSignalBar.tsx: Trust metrics and signals bar
+
+VEHICLE SELECTOR COMPONENTS
+--------------------------------------------------------------------------------
+- VehicleSelectorComponent.tsx: Main vehicle selector
+- SelectorCTA.tsx: Vehicle selector call-to-action
+
+FOOTER COMPONENTS
+--------------------------------------------------------------------------------
+- Footer.tsx: Main footer with links and newsletter
+
+ICONS
+--------------------------------------------------------------------------------
+- Icons/index.tsx: Centralized icon exports
+
+================================================================================
+TECHNICAL STACK
+================================================================================
+
+FRAMEWORK & CORE
+--------------------------------------------------------------------------------
+- Next.js 14.0.0 (App Router)
+- React 18.2.0
+- TypeScript 5.2.2
+- Node.js (latest LTS)
+
+STYLING
+--------------------------------------------------------------------------------
+- Tailwind CSS 3.3.5
+- PostCSS 8.4.31
+- Autoprefixer 10.4.16
+- Custom CSS (globals.css)
+- Google Fonts (Inter)
+
+ANIMATIONS
+--------------------------------------------------------------------------------
+- Framer Motion 10.16.16
+
+BUILD & DEPLOYMENT
+--------------------------------------------------------------------------------
+- Vercel (hosting platform)
+- Git/GitHub (version control)
+- npm (package management)
+
+================================================================================
+DATA STRUCTURE
+================================================================================
+
+PRODUCT DATA
+--------------------------------------------------------------------------------
+Location: lib/data/products.ts
+- Product objects with: id, name, slug, brand, category, price, salePrice,
+  description, shortDescription, images, features, specifications, fitment,
+  inStock, sku, badge
+
+NAVIGATION DATA
+--------------------------------------------------------------------------------
+Location: lib/data/navigation.ts
+- Vehicle navigation items
+- Part category navigation
+- Menu structures
+
+BRAND DATA
+--------------------------------------------------------------------------------
+Location: lib/data/brands.ts
+- Brand showcase information
+- Brand links and descriptions
+
+VEHICLE DATA
+--------------------------------------------------------------------------------
+Location: lib/vehicleData.ts
+- Vehicle makes, models, years
+- Fitment data structures
+
+================================================================================
+KEY FEATURES & FUNCTIONALITY
+================================================================================
+
+1. STATIC SITE GENERATION (SSG)
+   - Product pages pre-rendered at build time
+   - Fast page loads, SEO optimized
+
+2. DYNAMIC ROUTING
+   - Product slug-based URLs
+   - Category filtering via search params
+
+3. RESPONSIVE DESIGN
+   - Mobile-first approach
+   - Breakpoints: sm (640px), md (768px), lg (1024px), xl (1280px)
+
+4. IMAGE OPTIMIZATION
+   - Next.js Image component
+   - Automatic optimization and lazy loading
+   - Responsive image sizes
+
+5. VEHICLE SELECTION
+   - Session-based vehicle selection
+   - Context-aware product filtering
+   - Dynamic logo updates
+
+6. SEARCH FUNCTIONALITY
+   - Global search (UI ready, backend integration pending)
+
+7. CURRENCY FORMATTING
+   - South African Rand (ZAR) formatting
+   - Consistent price display
+
+8. STOCK MANAGEMENT
+   - In-stock/out-of-stock indicators
+   - Disabled states for out-of-stock items
+
+================================================================================
+FUTURE ENHANCEMENTS (PLANNED)
+================================================================================
+
+- Shopping cart functionality
+- Checkout process
+- User accounts and authentication
+- Order tracking
+- Product reviews and ratings
+- Advanced search with filters
+- Build configurator tool
+- Fitment partner locator map
+- Blog content management
+- Email newsletter integration
+- Payment gateway integration
+- Inventory management system
+- Multi-language support (English/Afrikaans)
+- Vehicle-specific product recommendations
+
+================================================================================
+FILE STRUCTURE SUMMARY
+================================================================================
+
+app/
+  ├── page.tsx (Home)
+  ├── layout.tsx (Root layout)
+  ├── globals.css (Global styles)
+  ├── products/
+  │   ├── page.tsx (Product catalog)
+  │   └── [slug]/
+  │       └── page.tsx (Product detail)
+  ├── vehicles/
+  │   └── page.tsx (Vehicle fitment)
+  ├── efs-suspension/
+  │   └── page.tsx (EFS brand page)
+  ├── tough-dog-suspension/
+  │   └── page.tsx (Tough Dog brand page)
+  ├── opposite-lock/
+  │   └── page.tsx (Opposite Lock brand page)
+  ├── onca-4x4/
+  │   └── page.tsx (Onca brand page)
+  ├── takla/
+  │   └── page.tsx (Takla brand page)
+  ├── mcc-4x4/
+  │   └── page.tsx (MCC brand page)
+  ├── wild-dog/
+  │   └── page.tsx (Wild Dog brand page)
+  ├── guides/
+  │   └── page.tsx (Build guides)
+  ├── contact/
+  │   └── page.tsx (Contact page)
+  ├── fitment-partners/
+  │   └── page.tsx (Partner network)
+  ├── privacy/
+  │   └── page.tsx (Privacy policy)
+  ├── terms/
+  │   └── page.tsx (Terms of service)
+  └── cookies/
+      └── page.tsx (Cookie policy)
+
+components/
+  ├── Header/ (Header components)
+  ├── Hero/ (Hero section components)
+  ├── Products/ (Product showcase components)
+  ├── Brands/ (Brand showcase components)
+  ├── Footer/ (Footer components)
+  ├── Gallery/ (Build gallery components)
+  ├── Blog/ (Blog components)
+  ├── Newsletter/ (Newsletter components)
+  ├── Trust/ (Trust signal components)
+  ├── VehicleSelector/ (Vehicle selector components)
+  ├── Content/ (Content marketing components)
+  └── Icons/ (Icon components)
+
+lib/
+  ├── data/ (Data files: products, navigation, brands)
+  ├── types/ (TypeScript type definitions)
+  └── vehicleData.ts (Vehicle data)
+
+hooks/
+  └── useVehicleSelection.ts (Vehicle selection hook)
+
+public/
+  └── images/ (Product images organized by brand)
+
+================================================================================
+END OF DOCUMENTATION
+================================================================================
+

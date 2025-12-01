@@ -5,18 +5,12 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { getProductsByBrand } from '@/lib/data/products';
 
-function formatPrice(price: number): string {
-  return new Intl.NumberFormat('en-ZA', {
-    style: 'currency',
-    currency: 'ZAR',
-    minimumFractionDigits: 0,
-  }).format(price);
-}
+import { formatPrice } from '@/lib/utils/formatPrice';
 
 const heroStats = [
-  { label: 'ADR & SABS', body: 'Crash pulse engineered Post, Rocker and Pegasus bars keep airbags and insurers happy.' },
-  { label: 'Toyota Focused', body: 'Land Cruiser 70/79, LC300, Hilux and Prado templates stocked in South Africa.' },
-  { label: 'Pegasus Alloy', body: 'Radar-safe alloy bars halve front axle weight on LC300 and Ranger T9 builds.' },
+  { label: 'ADR & SABS', body: 'Crash pulse engineered Phoenix, Rocker and Falcon bars keep airbags and insurers happy.' },
+  { label: 'Land Cruiser Focus', body: 'Land Cruiser 300, 76, 78, and 79 templates stocked in South Africa.' },
+  { label: 'Phoenix A-Frame', body: 'Premium A-Frame bars with integrated LED DRLs for LC300 luxury builds.' },
   { label: 'Winch & Tow Ready', body: 'Integrated winch cradles, recovery points and heavy-duty tow systems shipped with every kit.' },
 ];
 
@@ -24,82 +18,82 @@ const sellingPoints = [
   {
     title: 'Value-Premium Armour',
     bullets: [
-      'Post Type (Falcon) bumpers deliver Tier‑1 engineering at 15–20% lower price points—perfect for fleet roll-outs.',
-      'Split pans, five uprights and winch cradles keep Hilux, D‑Max and LC70 fleets alive after kudu strikes.',
+      'Falcon (Classic) and Rocker bumpers deliver Tier‑1 engineering at 15–20% lower price points—perfect for fleet roll-outs.',
+      'Split pans, three hoops and winch cradles keep Land Cruiser 70 Series fleets alive after kudu strikes.',
     ],
   },
   {
-    title: 'Pegasus for Tech Platforms',
+    title: 'Phoenix for Tech Platforms',
     bullets: [
-      'Alloy Pegasus bars accommodate LC300/LX and Ranger T9 radar, cameras, parking sensors and aero shutters.',
-      'No-cut installs preserve resale value on million-rand Cruisers while keeping ADR compliance intact.',
+      'Phoenix A-Frame bars accommodate LC300 radar, cameras, parking sensors and 360-degree cameras.',
+      'Bumper cut installs preserve resale value on million-rand Cruisers while keeping ADR compliance intact.',
     ],
   },
   {
     title: 'Rear & Side Ecosystem',
     bullets: [
-      'Rocker rear bars integrate heavy tow ratings, reverse LEDs and recovery points for Hilux/Ranger fleets.',
-      'Jack/dual-wheel carriers and side rails create full wrap protection for overlanding Land Cruisers.',
+      'Rear carrier bars with dual swing arms integrate heavy tow ratings, LED lights and recovery points for Land Cruiser 76 and 78.',
+      'Dual wheel carriers and side rails create full wrap protection for overlanding Land Cruisers.',
     ],
   },
 ];
 
 const vehicleFocus = [
   {
-    name: 'Land Cruiser 70 / 79',
-    summary: 'Post Type bullbars, side rails and Jack Bars that shrug off kudu strikes and mining duties.',
-    highlights: ['12,000 lb winch-ready', 'Dual aerial mounts', 'Integrated bash plates'],
+    name: 'Land Cruiser 300',
+    summary: 'Phoenix A-Frame premium bars with integrated LED DRLs, full radar/camera compatibility, and sophisticated faceted design.',
+    highlights: ['A-Frame design', 'Integrated LED DRLs', 'Radar + camera safe'],
   },
   {
-    name: 'Land Cruiser 300 / Prado 250',
-    summary: 'Pegasus alloy bumpers, dual wheel carriers and sensor relocation hardware for ADAS-packed Cruisers.',
-    highlights: ['Radar + ACC friendly', 'Minimal trimming', 'Dual spare + jerry arms'],
+    name: 'Land Cruiser 76 (Station Wagon)',
+    summary: 'Rocker bars with upswept wings for maximum approach angles, plus rear carrier bars with dual swing arms.',
+    highlights: ['Rocker upswept design', 'Rear carrier bar', 'Dual swing arms'],
   },
   {
-    name: 'Hilux GD6 / Fortuner',
-    summary: 'Rocker triple-loop bumpers, Rocker rear bars and twisted steps built for lifestyle + commercial dual use.',
-    highlights: ['Integrated DRLs', 'Tow-ready rear bars', 'Rock slider side steps'],
+    name: 'Land Cruiser 78 (Troop Carrier)',
+    summary: 'Rocker bars for extreme terrain, plus rear carrier bars with dual swing arms for expedition builds.',
+    highlights: ['Rocker aggressive design', 'Dual spare wheel carrier', 'Expedition ready'],
   },
   {
-    name: 'Ranger T9 / Raptor',
-    summary: 'Pegasus alloy for Next-Gen Ranger plus dedicated Raptor width kits with Tough Dog suspension pairings.',
-    highlights: ['Lightweight alloy', 'Camera safe hoops', 'Raptor-specific width'],
+    name: 'Land Cruiser 79 (Pickup / Bakkie)',
+    summary: 'Falcon Classic 3-hoop design for workhorse protection, or Rocker bars for extreme technical terrain.',
+    highlights: ['Falcon Classic', 'Rocker option', '12,000lb winch-ready'],
   },
 ];
 
 const skuHighlights = [
-  { sku: 'Post Type (Falcon) Bar', detail: 'Five uprights, split pan airflow and winch cradle for LC70, Hilux and D‑Max fleets.' },
-  { sku: 'Rocker Triple-Loop', detail: 'Faceted wings, approach-angle friendly, with LED fogs and rated recovery points.' },
-  { sku: 'Pegasus Alloy Bumper', detail: 'Radar-safe alloy construction for LC300 and Ranger T9 that halves front axle load.' },
-  { sku: 'Rocker Rear Bar', detail: 'Integrated tow hitch, recovery shackles and LED reverse lighting for Hilux/Ranger.' },
-  { sku: 'Dual Wheel Carriers', detail: 'Swing-away arms for LC300/LC100 moving spares and jerry cans off roof racks.' },
-  { sku: 'Side Rails & Twisted Steps', detail: 'Continuous flank protection plus Hi-Lift jack ready sliders for LC70 and Hilux.' },
+  { sku: 'Phoenix 808-02 A-Frame', detail: 'Premium A-Frame bar for LC300 with integrated LED DRLs, 60mm tubing, and full tech compatibility.' },
+  { sku: 'Rocker 078 Series', detail: 'Aggressive upswept wing design for LC76, 78, and 79. Maximum approach angles with LED integration.' },
+  { sku: 'Falcon 707-02 Classic', detail: 'Traditional 3-hoop design for LC79 workhorse. Split pan airflow and maximum headlight protection.' },
+  { sku: 'Rear Carrier Bar 022-02', detail: 'Dual swing arms for LC76 and 78. Carries spare wheels and jerry cans with integrated towbar.' },
+  { sku: 'Integrated LED DRLs', detail: 'Daytime Running Lights and sequential indicators built into Phoenix bars for distinctive road presence.' },
+  { sku: 'High-Lift Jack Points', detail: 'Dual High-Lift Jack points built into Rocker bars for recovery in technical terrain.' },
 ];
 
 const curatedBuilds = [
   {
-    title: 'LC79 Overland Armour Stack',
-    summary: 'Post Type front + brush rails, Jack Bar rear, dual battery cradle and Takla interior package keep farm rigs unbreakable.',
-    highlights: ['ADR compliant', 'Winch + recovery ready', 'Takla integration'],
-    cta: { label: 'Plan LC79 armour', href: '/contact' },
+    title: 'LC300 Phoenix Premium',
+    summary: 'Phoenix A-Frame bar with integrated LED DRLs, full radar/camera compatibility, and sophisticated design for luxury builds.',
+    highlights: ['A-Frame design', 'Integrated LED DRLs', 'Tech ready'],
+    cta: { label: 'View LC300 Kit', href: '/vehicles/land-cruiser-300' },
   },
   {
-    title: 'LC300 Pegasus Touring',
-    summary: 'Pegasus alloy bumper, dual carrier rear, Tough Dog Ralph shocks and Takla Platinum seats for luxury overlanders.',
-    highlights: ['Radar safe', 'Dual spare ready', 'Foam Cell Pro pairing'],
-    cta: { label: 'Build LC300 concept', href: '/contact' },
+    title: 'LC76 Rocker + Rear Carrier',
+    summary: 'Rocker front bar with upswept wings plus rear carrier bar with dual swing arms for complete protection.',
+    highlights: ['Rocker upswept design', 'Dual swing arms', 'Complete protection'],
+    cta: { label: 'View LC76 Kit', href: '/vehicles/land-cruiser-76' },
   },
   {
-    title: 'Hilux Legend Dual-Life Kit',
-    summary: 'Rocker front/rear bars, twisted steps, Wild Dog recovery and EFS suspension to balance city commutes with weekend mud.',
-    highlights: ['Canopy-ready tow rating', 'Rated recovery', 'Side protection'],
-    cta: { label: 'Configure Hilux armour', href: '/contact' },
+    title: 'LC78 Expedition Armour',
+    summary: 'Rocker front bar for extreme terrain plus rear carrier bar with dual spare wheel capacity for long-range expeditions.',
+    highlights: ['Rocker aggressive', 'Dual spare carrier', 'Expedition ready'],
+    cta: { label: 'View LC78 Kit', href: '/vehicles/land-cruiser-78' },
   },
   {
-    title: 'Ranger T9 Pegasus Alloy',
-    summary: 'Alloy Pegasus bar, Tough Dog coils, Opposite Lock lighting and Takla interiors for radar-heavy Next-Gen Rangers.',
-    highlights: ['33" tyre friendly', 'Sensor relocation kit', 'Lightweight front axle load'],
-    cta: { label: 'Spec Ranger package', href: '/contact' },
+    title: 'LC79 Workhorse Classic',
+    summary: 'Falcon Classic 3-hoop design for maximum protection, or Rocker bar for extreme technical terrain. Winch-ready and ADR compliant.',
+    highlights: ['Falcon Classic', 'Rocker option', 'Winch ready'],
+    cta: { label: 'View LC79 Kit', href: '/vehicles/land-cruiser-79' },
   },
 ];
 
@@ -107,7 +101,7 @@ const logisticsNotes = [
   { title: 'ADR69 / ADR72 Tested', detail: 'Bars retain OEM crash pulse so insurers, fleets and safety officers approve installs instantly.' },
   { title: 'Sensor Integration', detail: 'Pegasus and Rocker Low Loop bars include radar, camera and parking sensor relocation hardware.' },
   { title: 'Ugly Freight Solved', detail: 'We ship 70 kg bumpers via provincial table rates or bulk to fitment partners with forklifts.' },
-  { title: 'Fitment Partner Ready', detail: 'Book installs nationwide—bars arrive prepped, torqued and ready for same-day fitment.' },
+  { title: 'Installation Ready', detail: 'Bars arrive prepped, torqued and ready for professional installation.' },
 ];
 
 export default function MCCPage() {
@@ -123,7 +117,7 @@ export default function MCCPage() {
             <p className="text-sm font-bold uppercase tracking-[0.4em] text-accent-400 mb-5">Value-Premium Armour</p>
             <h1 className="text-4xl md:text-6xl font-black leading-tight mb-6">MCC 4x4 South Africa</h1>
             <p className="text-lg md:text-2xl text-white/80 leading-relaxed">
-              Post, Rocker and Pegasus armour systems built for Toyota Land Cruisers, Hiluxes and Ranger fleets. ADR compliant, winch-ready and priced for large-scale roll-outs.
+              Phoenix, Rocker and Falcon armour systems built for Land Cruiser 300, 76, 78, and 79. ADR compliant, winch-ready and priced for large-scale roll-outs.
             </p>
           </div>
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -232,7 +226,7 @@ export default function MCCPage() {
               <p className="text-sm font-bold uppercase tracking-[0.3em] text-gray-500 mb-3">Vehicle Ecosystems</p>
               <h2 className="text-4xl font-black text-gray-900 mb-4">Platforms We Armour Weekly</h2>
               <p className="text-lg text-gray-600">
-                LC70s, LC300s, Hiluxes, Prados and Rangers each demand unique barwork—from five-post cages to radar-safe alloy. MCC covers all of them with one catalogue.
+                Land Cruiser 300 luxury builds, 76 family wagons, 78 expedition Troopies, and 79 workhorse pickups each demand unique barwork—from Phoenix A-Frame to Falcon Classic. MCC covers all of them with one catalogue.
               </p>
             </div>
           </div>
@@ -264,7 +258,7 @@ export default function MCCPage() {
           <div className="text-center max-w-3xl mx-auto mb-12">
             <p className="text-sm font-bold uppercase tracking-[0.3em] text-gray-500 mb-4">Hero Products</p>
             <h2 className="text-4xl font-black text-gray-900 mb-4">MCC Signatures Worth Knowing</h2>
-            <p className="text-lg text-gray-600">These SKUs anchor Cruiser, Hilux and Ranger protection programs.</p>
+            <p className="text-lg text-gray-600">These SKUs anchor Land Cruiser protection programs.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {skuHighlights.map((item) => (
@@ -339,7 +333,7 @@ export default function MCCPage() {
               <p className="text-sm font-bold uppercase tracking-[0.3em] text-accent-400 mb-3">Ready to Armour Up?</p>
               <h3 className="text-3xl font-black mb-4">Book an MCC Consultation</h3>
               <p className="text-white/80 mb-6">
-                Receive a curated product map, logistics plan and fitment partner recommendation tailored to your Land Cruiser or Hilux build schedule.
+                Receive a curated product map and logistics plan tailored to your Land Cruiser build schedule.
               </p>
               <Link
                 href="/contact"

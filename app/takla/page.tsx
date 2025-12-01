@@ -5,16 +5,10 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { getProductsByBrand } from '@/lib/data/products';
 
-function formatPrice(price: number): string {
-  return new Intl.NumberFormat('en-ZA', {
-    style: 'currency',
-    currency: 'ZAR',
-    minimumFractionDigits: 0,
-  }).format(price);
-}
+import { formatPrice } from '@/lib/utils/formatPrice';
 
 const heroStats = [
-  { label: 'Toyota Templates', body: 'LC70/79, LC200/300, Prado, Hilux and Fortuner patterns drop the day Toyota launches.' },
+  { label: 'Land Cruiser Focus', body: 'Complete interior protection for Land Cruiser 300, 76, 78, and 79 with patterns that drop the day Toyota launches.' },
   { label: 'Lifetime Coverage', body: 'Signature & Cantech seat covers carry lifetime warranties under real-world abuse.' },
   { label: 'Full Cabin Systems', body: 'Seat covers, Takmats, load liners, dash + tunnel shields and storage solutions.' },
   { label: 'African Proof', body: 'Cantech & Durotech fabrics repel red dust, UV and farm chemicals without shrinking.' },
@@ -36,9 +30,9 @@ const sellingPoints = [
     ],
   },
   {
-    title: 'Toyota-Aligned Fitments',
+    title: 'Land Cruiser-Aligned Fitments',
     bullets: [
-      'Templates mirror Toyota releases, from LC79 GD-6 conversions to Prado 250 and Hilux Legend RS.',
+      'Templates mirror Toyota releases, from LC79 GD-6 conversions to LC300 luxury models.',
       'Burst-thread seams and airbag certification eliminate insurer pushback on modified interiors.',
     ],
   },
@@ -46,22 +40,28 @@ const sellingPoints = [
 
 const vehicleSegments = [
   {
-    title: 'Land Cruiser 70 Series',
-    subtitle: 'Fleet & Overland Workhorse',
-    copy: 'Signature or Cantech covers tame the vinyl cabin, Takmats kill gearbox heat and dust, and dash/tunnel shields stop UV cracks during borehole runs.',
-    highlights: ['Signature + Cantech pairs', 'Takmats + tunnel wraps', 'Dash guards + seatback storage'],
-  },
-  {
-    title: 'Land Cruiser 200 / 300',
+    title: 'Land Cruiser 300',
     subtitle: 'Luxury Overland',
-    copy: 'Platinum perforated inserts keep ventilated seats breathing, full Takmats and load liners protect deep pile carpets, and seatbelt apertures remain OEM.',
-    highlights: ['Platinum Alcantara', 'Ventilation safe stitching', 'Full-depth load liners'],
+    copy: 'Signature Executive seat covers with 8mm foam backing feel like factory leather. Airbag safe, breathable Cantech fabric keeps luxury interiors pristine.',
+    highlights: ['Signature Executive', '8mm foam backing', 'Airbag safe'],
   },
   {
-    title: 'Hilux / Fortuner / Prado',
-    subtitle: 'Family & Lifestyle',
-    copy: 'Signature kits, rear Takmats and waterproof load liners handle school runs, surf trips and dogs without throwing away resale value.',
-    highlights: ['Machine-washable covers', 'Waterproof cargo tubs', 'Kid + pet friendly fabrics'],
+    title: 'Land Cruiser 76 (Station Wagon)',
+    subtitle: 'Family Protection',
+    copy: 'Heavy-duty loadliner transforms the cargo area into a waterproof bakkie bed. Protects floor, sides, and rear door from scratches, dog hair, and spills.',
+    highlights: ['Heavy-duty loadliner', 'Full cargo coverage', 'Dog proof'],
+  },
+  {
+    title: 'Land Cruiser 78 (Troop Carrier)',
+    subtitle: 'Expedition Ready',
+    copy: 'Cantech Endurance seat covers built for the long haul. Machine washable, sweat-resistant, and designed for 8+ hour driving days in the bush.',
+    highlights: ['Cantech Endurance', 'Machine washable', 'Sweat resistant'],
+  },
+  {
+    title: 'Land Cruiser 79 (Pickup / Bakkie)',
+    subtitle: 'Workhorse Protection',
+    copy: 'Takmat sound & heat deadening floor mats quieten the cabin and block gearbox heat. 92% floor coverage with velcro lock for safety.',
+    highlights: ['Sound deadening', 'Heat shielding', '92% coverage'],
   },
 ];
 
@@ -76,49 +76,53 @@ const skuHighlights = [
 
 const curatedCollections = [
   {
-    title: 'LC79 Heat + Dust Defender',
+    title: 'LC79 Sound Deadening Takmats',
     summary: 'Signature seat covers, Takmats, dash shades and tunnel wraps keep 70 Series cabins cool and dust-free under 500 km of corrugations.',
     highlights: ['Signature foam-backed fit', 'Takmat thermal barrier', 'Dash + tunnel insulation'],
     cta: { label: 'Build LC79 interior package', href: '/contact' },
   },
   {
-    title: 'LC300 Platinum Preservation',
+    title: 'LC300 Signature Executive',
     summary: 'Platinum perforated Alcantara, Takmats and load liners safeguard ZX/GR-S interiors while respecting sensors and ventilation.',
     highlights: ['Ventilation friendly', '8 mm structural foam', 'Full cargo tub coverage'],
     cta: { label: 'Secure LC300 kit', href: '/contact' },
   },
   {
-    title: 'Hilux / Fortuner Lifestyle Kit',
-    summary: 'Signature covers, rear Takmats and waterproof load liners tame school runs, pets and beach sand in GD6 double cabs and SUVs.',
-    highlights: ['Machine-washable', 'Waterproof tub', 'Kid + pet ready'],
-    cta: { label: 'Plan Hilux/Fortuner interior', href: '/contact' },
+    title: 'LC76 Heavy Duty Loadliner',
+    summary: 'Transform the cargo area into a waterproof bakkie bed. Full coverage protects floor, sides, wheel arches, and rear door from scratches and spills.',
+    highlights: ['Full cargo coverage', 'Dog proof', 'Bumper flap included'],
+    cta: { label: 'View LC76 Kit', href: '/vehicles/land-cruiser-76' },
   },
   {
-    title: 'Prado / Jimny Expedition Pack',
-    summary: 'River Rock heavy-duty fabric, seatback organisers and storage pouches ready Prado 250s and Jimny JB74s for Botswana loops.',
-    highlights: ['High abrasion resistance', 'Seatback storage', 'Lightweight fitment'],
-    cta: { label: 'Book Prado/Jimny consult', href: '/contact' },
+    title: 'LC78 Cantech Endurance',
+    summary: 'Built for the long haul. Machine washable seat covers that keep your Troopy interior fresh even after weeks in the bush. Sweat-resistant and tough.',
+    highlights: ['Machine washable', 'Sweat resistant', 'Long distance comfort'],
+    cta: { label: 'View LC78 Kit', href: '/vehicles/land-cruiser-78' },
   },
 ];
 
 const bundleIdeas = [
   {
-    title: '79 Series Overlanding Essentials',
-    copy: 'Signature seat covers + Takmat + dash shield + tunnel cover = cool, quiet, clean cabin.',
+    title: 'LC79 Workhorse Essentials',
+    copy: 'Cantech seat covers + Takmat sound deadening + dash shield = cool, quiet, clean cabin.',
   },
   {
     title: 'LC300 Premium Preservation Kit',
-    copy: 'Platinum perforated covers + Takmats + load liner keep every touchpoint immaculate.',
+    copy: 'Signature Executive covers + Takmats + load liner keep every touchpoint immaculate.',
   },
   {
-    title: 'Family Tourer Pack',
-    copy: 'Signature seat covers + Takmats + rear load liner for Fortuner/Prado owners hauling kids and pets.',
+    title: 'LC76 Family Protection Pack',
+    copy: 'Signature seat covers + Heavy-duty loadliner = complete cargo and interior protection.',
+  },
+  {
+    title: 'LC78 Expedition Interior',
+    copy: 'Cantech Endurance seat covers + Takmats = fresh interior even after weeks in the bush.',
   },
 ];
 
 const logisticsNotes = [
   { title: 'Airbag & Sensor Safe', detail: 'Burst-thread seams and ISO hooks keep airbags, seat sensors and ventilation happy—no insurer pushback.' },
-  { title: 'Nationwide Shipping', detail: 'Seat cover sets and Takmats ship anywhere in South Africa; heavy load liners route via partner fitment hubs.' },
+  { title: 'Nationwide Shipping', detail: 'Seat cover sets and Takmats ship anywhere in South Africa; heavy load liners available for shipping.' },
   { title: 'Swatch & Fitment Support', detail: 'Request fabric swatches, see Signature vs Cantech vs Durotech and get install guides or workshop referrals.' },
   { title: 'Bundle Planning', detail: 'Match Takla interiors with MCC/Tough Dog armour + suspension so ride height, loads and cab preservation stay balanced.' },
 ];
@@ -246,7 +250,7 @@ export default function TaklaPage() {
               <p className="text-sm font-bold uppercase tracking-[0.3em] text-gray-500 mb-3">Vehicle Ecosystems</p>
               <h2 className="text-4xl font-black text-gray-900 mb-4">Toyota Platforms We Outfit Daily</h2>
               <p className="text-lg text-gray-600">
-                LC70/79 fleets, LC300 luxury overlanders and Hilux/Prado family rigs each have unique pain points—heat, dust, kids, pets, premium electronics. Takla’s catalogue solves every one.
+                Land Cruiser 300 luxury overlanders, 76 family wagons, 78 expedition Troopies, and 79 workhorse pickups each have unique pain points—heat, dust, kids, pets, premium electronics. Takla's catalogue solves every one.
               </p>
             </div>
             <div className="flex-1 grid grid-cols-2 gap-4">
