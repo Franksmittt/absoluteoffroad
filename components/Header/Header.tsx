@@ -34,7 +34,7 @@ export default function Header() {
       >
         <div className="container mx-auto px-4 lg:px-8">
           {/* Compact Inline Header */}
-          <div className="flex items-center justify-between py-3">
+          <div className="flex items-center justify-between py-2.5">
             {/* Logo */}
             <div className="flex items-center">
               <Link href="/" aria-label="Go to homepage" className="inline-flex items-center">

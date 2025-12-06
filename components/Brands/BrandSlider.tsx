@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import Link from 'next/link';
 import { motion, useAnimation } from 'framer-motion';
 import { brandShowcase } from '@/lib/data/brands';
 
@@ -32,7 +33,7 @@ export default function BrandSlider() {
   const brandSets = [...displayBrands, ...displayBrands, ...displayBrands];
 
   return (
-    <section className="bg-brand-black py-8 md:py-12 overflow-hidden border-y border-white/5">
+    <section className="bg-brand-black py-4 md:py-6 overflow-hidden border-y border-white/5">
       <div className="relative">
         {/* Gradient overlays for fade effect */}
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-brand-black via-brand-black to-transparent z-10 pointer-events-none" />
@@ -50,11 +51,13 @@ export default function BrandSlider() {
                 key={`${brand.name}-${index}`}
                 className="flex-shrink-0 flex items-center justify-center"
               >
-                <div className="px-8 md:px-12 py-4 md:py-5 bg-white/5 rounded-xl border border-white/10 hover:border-accent-400/50 hover:bg-white/10 transition-all backdrop-blur-sm group">
-                  <span className="text-white text-lg md:text-2xl font-bold whitespace-nowrap group-hover:text-accent-400 transition-colors">
-                    {brand.name}
-                  </span>
-                </div>
+                <Link href={brand.href} className="block">
+                  <div className="px-8 md:px-12 py-4 md:py-5 bg-white/5 rounded-xl border border-white/10 hover:border-accent-400/50 hover:bg-white/10 transition-all backdrop-blur-sm group cursor-pointer">
+                    <span className="text-white text-lg md:text-2xl font-bold whitespace-nowrap group-hover:text-accent-400 transition-colors">
+                      {brand.name}
+                    </span>
+                  </div>
+                </Link>
               </div>
             ))}
           </motion.div>

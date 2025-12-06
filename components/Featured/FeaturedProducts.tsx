@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { getAllProducts } from '@/lib/data/products';
 import { formatPrice } from '@/lib/utils/formatPrice';
+import { getShortProductTitle } from '@/lib/utils/formatProductTitle';
 
 const featuredKits = [
   {
@@ -46,78 +47,64 @@ export default function FeaturedProducts() {
   const featuredProducts = allProducts.filter(p => p.badge || p.id.includes('mcc-001') || p.id.includes('td-002') || p.id.includes('efs-001') || p.id.includes('takla-002')).slice(0, 4);
 
   return (
-    <section className="relative py-20 md:py-28 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden">
-      <div className="container mx-auto px-4 relative z-10">
+    <section className="relative py-16 md:py-20 bg-white overflow-hidden">
+      <div className="container mx-auto px-4 max-w-7xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
-          <p className="text-sm font-bold uppercase tracking-[0.3em] text-gray-500 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
             Featured Products
-          </p>
-          <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-4">
-            Top Toyota <span className="text-gray-700">Products</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-            Hand-picked favorites from our premium range. Trusted by thousands of Land Cruiser and Hilux builds across South Africa.
+          <p className="text-sm text-gray-600 max-w-2xl mx-auto">
+            Hand-picked favorites from our premium range
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           {featuredProducts.map((product, index) => (
             <motion.div
               key={product.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              whileHover={{ y: -5 }}
+              transition={{ delay: index * 0.1, duration: 0.4 }}
             >
               <Link href={`/products/${product.slug}`}>
-                <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border border-gray-200 hover:border-gray-300 h-full flex flex-col">
-                  <div className="relative h-64 overflow-hidden bg-gray-100">
-                    <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                      <span className="text-gray-400 text-sm font-semibold">{product.brand}</span>
+                <div className="group bg-white rounded-lg overflow-hidden border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all h-full flex flex-col">
+                  <div className="relative aspect-square overflow-hidden bg-gray-50">
+                    <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
+                      <span className="text-gray-400 text-xs font-medium">{product.brand}</span>
                     </div>
                     {product.badge && (
-                      <div className="absolute top-4 left-4 z-10">
-                        <span className="px-3 py-1 bg-accent-400 text-gray-900 text-xs font-black rounded-full uppercase tracking-wide">
+                      <div className="absolute top-3 left-3 z-10">
+                        <span className="px-2 py-0.5 bg-gray-900 text-white text-xs font-semibold rounded uppercase tracking-wide">
                           {product.badge}
                         </span>
                       </div>
                     )}
                   </div>
-                  <div className="p-6 flex-1 flex flex-col">
-                    <p className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">
+                  <div className="p-4 flex-1 flex flex-col">
+                    <p className="text-xs font-medium text-gray-500 mb-1.5">
                       {product.brand}
                     </p>
-                    <h3 className="text-lg font-black text-gray-900 mb-3 group-hover:text-gray-700 transition-colors line-clamp-2">
-                      {product.name}
+                    <h3 className="text-base font-semibold text-gray-900 mb-2 group-hover:text-gray-700 transition-colors line-clamp-2 leading-snug">
+                      {getShortProductTitle(product.name, product.brand)}
                     </h3>
-                    <p className="text-sm text-gray-600 line-clamp-3 flex-1 mb-4">
-                      {product.shortDescription}
-                    </p>
-                    <div className="mt-auto flex items-center justify-between">
-                      <div className="flex flex-col">
+                    <div className="mt-auto pt-3 border-t border-gray-100">
+                      <div className="flex items-center justify-between">
                         {product.salePrice ? (
                           <>
-                            <span className="text-2xl font-black text-gray-900">{formatPrice(product.salePrice)}</span>
-                            <span className="text-sm text-gray-500 line-through">{formatPrice(product.price)}</span>
+                            <span className="text-lg font-bold text-gray-900">{formatPrice(product.salePrice)}</span>
+                            <span className="text-xs text-gray-400 line-through">{formatPrice(product.price)}</span>
                           </>
                         ) : (
-                          <span className="text-2xl font-black text-gray-900">{formatPrice(product.price)}</span>
+                          <span className="text-lg font-bold text-gray-900">{formatPrice(product.price)}</span>
                         )}
                       </div>
-                      <motion.span
-                        className="text-lg font-bold text-gray-900"
-                        animate={{ x: [0, 5, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                      >
-                        →
-                      </motion.span>
                     </div>
                   </div>
                 </div>
@@ -129,16 +116,9 @@ export default function FeaturedProducts() {
         <div className="text-center">
           <Link
             href="/products"
-            className="inline-flex items-center justify-center px-8 py-4 bg-gray-900 text-white font-black text-lg rounded-xl hover:bg-gray-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            className="inline-flex items-center justify-center px-6 py-2.5 bg-gray-900 text-white font-semibold text-sm rounded-md hover:bg-gray-800 transition-colors"
           >
             View All Products
-            <motion.span
-              className="ml-2"
-              animate={{ x: [0, 5, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            >
-              →
-            </motion.span>
           </Link>
         </div>
       </div>

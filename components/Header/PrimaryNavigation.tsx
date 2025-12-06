@@ -32,36 +32,36 @@ export default function PrimaryNavigation() {
 
   return (
     <div className="relative hidden lg:block" onMouseLeave={handleMouseLeave}>
-      <nav className="flex items-center justify-center gap-4 text-sm font-semibold uppercase tracking-wide text-white">
+      <nav className="flex items-center justify-center gap-1 text-sm font-medium text-white">
         <button
           onMouseEnter={() => handleMouseEnter('vehicle')}
-          className="rounded-full px-5 py-2 transition-colors hover:bg-white/10"
+          className="px-4 py-2 rounded-md transition-colors hover:bg-white/10"
         >
-          Shop by Vehicle
+          Vehicles
         </button>
         <button
           onMouseEnter={() => handleMouseEnter('part')}
-          className="rounded-full px-5 py-2 transition-colors hover:bg-white/10"
+          className="px-4 py-2 rounded-md transition-colors hover:bg-white/10"
         >
-          Shop by Part
+          Parts
         </button>
         <button
           onMouseEnter={() => handleMouseEnter('brand')}
-          className="rounded-full px-5 py-2 transition-colors hover:bg-white/10"
+          className="px-4 py-2 rounded-md transition-colors hover:bg-white/10"
         >
-          Shop by Brand
+          Brands
         </button>
         <Link
           href="/products"
-          className="rounded-full px-5 py-2 transition-colors hover:bg-white/10"
+          className="px-4 py-2 rounded-md transition-colors hover:bg-white/10"
         >
           All Products
         </Link>
         <Link
           href="/guides"
-          className="rounded-full px-5 py-2 transition-colors hover:bg-white/10"
+          className="px-4 py-2 rounded-md transition-colors hover:bg-white/10"
         >
-          Guides & Builds
+          Guides
         </Link>
       </nav>
 
@@ -73,24 +73,19 @@ export default function PrimaryNavigation() {
             exit={{ opacity: 0, y: -10 }}
             onMouseEnter={() => handleMouseEnter('vehicle')}
             onMouseLeave={handleMouseLeave}
-            className="absolute left-0 right-0 z-50 mt-4 max-h-[80vh] overflow-y-auto rounded-3xl border border-white/10 bg-brand-black/95 p-6 text-white shadow-2xl backdrop-blur-2xl scrollbar-thin scrollbar-thumb-accent-400 scrollbar-track-transparent"
+            className="absolute left-0 z-50 mt-2 rounded-md border border-white/10 bg-gray-900 p-3 text-white shadow-xl min-w-[200px]"
           >
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            <nav className="space-y-1">
               {vehicleNavItems.map((vehicle) => (
                 <Link
                   key={vehicle.name}
                   href={vehicle.href}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-5 transition-all hover:border-accent-400 hover:bg-white/10"
+                  className="block px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10 rounded-md transition-colors"
                 >
-                  <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent-400">{vehicle.badge}</p>
-                  <h3 className="text-xl font-black text-white mt-2 mb-3">{vehicle.name}</h3>
-                  <p className="text-sm text-white/70 leading-relaxed">{vehicle.summary}</p>
-                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-accent-400">
-                    {vehicle.cta} →
-                  </span>
+                  {vehicle.name}
                 </Link>
               ))}
-            </div>
+            </nav>
           </motion.div>
         )}
 
@@ -101,30 +96,19 @@ export default function PrimaryNavigation() {
             exit={{ opacity: 0, y: -10 }}
             onMouseEnter={() => handleMouseEnter('part')}
             onMouseLeave={handleMouseLeave}
-            className="absolute left-0 right-0 z-50 mt-4 max-h-[80vh] overflow-y-auto rounded-3xl border border-white/10 bg-brand-black/95 p-6 text-white shadow-2xl backdrop-blur-2xl scrollbar-thin scrollbar-thumb-accent-400 scrollbar-track-transparent"
+            className="absolute left-0 z-50 mt-2 rounded-md border border-white/10 bg-gray-900 p-3 text-white shadow-xl min-w-[200px]"
           >
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <nav className="space-y-1">
               {partNavCategories.map((category) => (
-                <div
+                <Link
                   key={category.name}
-                  className="rounded-2xl border border-white/5 bg-white/5 p-5"
+                  href={category.href}
+                  className="block px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10 rounded-md transition-colors"
                 >
-                  <Link href={category.href}>
-                    <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent-400">
-                      {category.name}
-                    </p>
-                    <p className="mt-2 text-sm text-white/70 line-clamp-3">{category.summary}</p>
-                  </Link>
-                  <div className="mt-4 flex flex-col gap-2">
-                    {category.items.map((item) => (
-                      <span key={item} className="text-sm text-white/80 border border-white/10 rounded-xl px-3 py-2 bg-brand-black/40">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                  {category.name}
+                </Link>
               ))}
-            </div>
+            </nav>
           </motion.div>
         )}
         {activeMenu === 'brand' && (
@@ -134,22 +118,19 @@ export default function PrimaryNavigation() {
             exit={{ opacity: 0, y: -10 }}
             onMouseEnter={() => handleMouseEnter('brand')}
             onMouseLeave={handleMouseLeave}
-            className="absolute left-0 right-0 z-50 mt-4 max-h-[80vh] overflow-y-auto rounded-3xl border border-white/10 bg-brand-black/95 p-6 text-white shadow-2xl backdrop-blur-2xl scrollbar-thin scrollbar-thumb-accent-400 scrollbar-track-white/10"
+            className="absolute left-0 z-50 mt-2 rounded-md border border-white/10 bg-gray-900 p-3 text-white shadow-xl min-w-[200px]"
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <nav className="space-y-1">
               {brandShowcase.map((brand) => (
                 <Link
                   key={brand.slug}
                   href={brand.href}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-5 transition-all hover:border-accent-400 hover:bg-white/10"
+                  className="block px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10 rounded-md transition-colors"
                 >
-                  <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent-400 mb-2">Brand Store</p>
-                  <h3 className="text-2xl font-black text-white mb-2">{brand.name}</h3>
-                  <p className="text-sm text-white/70">{brand.tagline}</p>
-                  <p className="text-xs text-white/50 mt-2">{brand.focus}</p>
+                  {brand.name}
                 </Link>
               ))}
-            </div>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>
